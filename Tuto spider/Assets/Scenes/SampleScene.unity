@@ -657,7 +657,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897522356}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.92387956, z: 0, w: 0.38268343}
   m_LocalPosition: {x: 0, y: 0.047, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -667,7 +667,7 @@ Transform:
   - {fileID: 1578585738}
   - {fileID: 719279732}
   m_Father: {fileID: 6909999645482780131}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 135, z: 0}
 --- !u!114 &897522358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3353,13 +3353,13 @@ MonoBehaviour:
   - {fileID: 1783827101}
   - {fileID: 1675695506}
   spider: {fileID: 6913460906154913931}
-  MoveDistance: 0.5
-  legMovementSmoothness: 7
-  velocitySmoothness: 3
+  moveDistance: 0.7
+  legMovementSmoothness: 5
+  bodySmoothness: 8
   overStepMultiplier: 1.5
-  waitTimeBetweenSteps: 1
+  waitTimeBetweenSteps: 2
   spiderJitterCutOff: 0
-  stepHeight: 0.5
+  stepHeight: 0.15
 --- !u!4 &6916364888563719961
 Transform:
   m_ObjectHideFlags: 0
