@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -443,7 +443,7 @@ MonoBehaviour:
   maxDistance: 100
   minDistance: 10
   target: {fileID: 865203499}
-  moveDuration: 10
+  speed: 3
 --- !u!1 &664582954
 GameObject:
   m_ObjectHideFlags: 3
@@ -750,7 +750,7 @@ Transform:
   m_GameObject: {fileID: 865203495}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.86, y: 2.0256586, z: 6.69}
+  m_LocalPosition: {x: -8.79, y: 5.09, z: 12.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -911,7 +911,7 @@ MonoBehaviour:
   maxDistance: 100
   minDistance: 10
   target: {fileID: 865203499}
-  moveDuration: 1
+  speed: 3
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,7 +1194,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1191897445}
-  - component: {fileID: 1191897446}
   m_Layer: 0
   m_Name: Target 4
   m_TagString: Untagged
@@ -1217,22 +1216,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 921943565}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1191897446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191897444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa037da10defeda40a045cbf8c844879, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDistance: 100
-  minDistance: 10
-  target: {fileID: 865203499}
-  moveDuration: 1
 --- !u!1 &1249302315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,7 +1447,7 @@ MonoBehaviour:
   maxDistance: 100
   minDistance: 10
   target: {fileID: 865203499}
-  moveDuration: 1
+  speed: 3
 --- !u!1 &1517573508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,7 +1887,7 @@ MonoBehaviour:
   maxDistance: 100
   minDistance: 10
   target: {fileID: 865203499}
-  moveDuration: 1
+  speed: 3
 --- !u!1 &1783827101
 GameObject:
   m_ObjectHideFlags: 0
@@ -2998,6 +2981,7 @@ GameObject:
   - component: {fileID: 6913460906154913935}
   - component: {fileID: 6913460906154913934}
   - component: {fileID: 6913460906154913933}
+  - component: {fileID: 6913460906154913936}
   m_Layer: 0
   m_Name: SpiderOrange
   m_TagString: Untagged
@@ -3087,6 +3071,22 @@ MonoBehaviour:
   cam: {fileID: 963194228}
   speed: 1000
   turnSmoothTime: 0.1
+--- !u!114 &6913460906154913936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6913460906154913931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa037da10defeda40a045cbf8c844879, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 5
+  minDistance: 2
+  target: {fileID: 865203499}
+  speed: 3
 --- !u!1 &6913471279234430983
 GameObject:
   m_ObjectHideFlags: 0
