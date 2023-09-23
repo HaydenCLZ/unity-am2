@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class bodyController : MonoBehaviour
 {
+    // Used to move towards the target
+    public Transform target;
+    Vector3 distanceFromTarget;
+
 
     public GameObject[] legTargets;
     public GameObject[] legCubes;
@@ -22,7 +26,6 @@ public class bodyController : MonoBehaviour
     public int waitTimeBetweenSteps = 0;
     public float spiderJitterCutOff = 0f;
     public float stepHeight = 0.15f;
-
 
     bool currentLeg = true;
     Vector3 lastBodyUp; 
@@ -61,7 +64,6 @@ public class bodyController : MonoBehaviour
     {
         velocity = spider.transform.position - lastSpiderPosition;
         velocity = (velocity + bodySmoothness * lastVelocity) / (bodySmoothness + 1f);
-
 
         moveLegs();
         rotateBody();
