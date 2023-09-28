@@ -26,6 +26,7 @@ public class bodyController : MonoBehaviour
     public int waitTimeBetweenSteps = 0;
     public float spiderJitterCutOff = 0f;
     public float stepHeight = 0.15f;
+    float speed = 0;
 
     bool currentLeg = true;
     Vector3 lastBodyUp; 
@@ -34,6 +35,7 @@ public class bodyController : MonoBehaviour
     List<int> nextIndexToMove = new List<int>();
     List<int> indexMoving = new List<int>();
 
+    public Vector3 Velocity3 { get => new(velocity.x, 0, velocity.y); }
 
     void Start()
     {
@@ -131,4 +133,15 @@ public class bodyController : MonoBehaviour
         Vector3 targetPosition = legCubes[index].transform.position + Mathf.Clamp(velocity.magnitude * overStepMultiplier, 0f, 1.5f) * (legCubes[index].transform.position - legTargets[index].transform.position) + velocity * overStepMultiplier;
         StartCoroutine(step(index, targetPosition, true));
     }
+
+    /*private void OnDrawGizmosSelected()
+    {
+        for (int i = 0; i < legTargets.Length; ++i)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(legTargets[i].transform.position, 0.05f);
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.TransformPoint(legOriginalPositions[i]), moveDistance);
+        }
+    }*/
 }
