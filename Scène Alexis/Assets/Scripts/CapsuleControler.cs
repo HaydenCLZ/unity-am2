@@ -4,39 +4,85 @@ using UnityEngine;
 
 public class CapsuleControler : MonoBehaviour
 {
-    public float speed = 10.0f;
-    public float rotationSpeed = 2.0f;
+    public float speed = 50.0f;
+    public float rotationSpeed = 100.0f;
+    int collide = 0;
+    bool moving = false;
+    bool jumping = false;
+    Vector3 inertie = Vector3.zero;
+    
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter(Collision collision)
     {
-        Vector3 forward_world = transform.TransformDirection(Vector3.forward);
-        Vector3 side_world = transform.TransformDirection(Vector3.right);
-        Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        Vector2 keyInput = new Vector2(0, 0);
-        if (Input.GetKey(KeyCode.W))
+        collide++;
+    }
+
+    // Gets called when the object exits the collision
+    void OnCollisionExit(Collision collision)
+    {
+        collide--;
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {   
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 side = transform.TransformDirection(Vector3.right);
+        inertie *= (0.95f - Time.deltaTime) * (0.9f-Mathf.Min(0.1f, collide));
+        Vector3 movement = Vector3.zero;
+        moving = false;
+        jumping = false;
+        Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X") * rotationSpeed, 0);
+        Vector2 keyInput = Vector2.zero;
+        if (collide != 0)
         {
-            keyInput.x++;
+            if (Input.GetKey(KeyCode.W))
+            {
+                keyInput.x++;
+                moving = true;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                keyInput.x--;
+                moving = true;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                keyInput.y++;
+                moving = true;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                keyInput.y--;
+                moving = true;
+            }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                jumping = true;
+                moving = true;
+            }
         }
-        if (Input.GetKey(KeyCode.S))
+        forward *= speed * Time.deltaTime * keyInput.x * -4;
+        side *= speed * Time.deltaTime * keyInput.y * -1;
+        movement = forward + side;  
+        if(jumping)
         {
-            keyInput.x--;
+            movement = movement + Vector3.up*10.0f;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (moving)
         {
-            keyInput.y++;
+            inertie = movement;
         }
-        if (Input.GetKey(KeyCode.A))
+        else
         {
-            keyInput.y--;
+            movement = inertie;
         }
-        transform.position += forward_world * speed * Time.deltaTime * keyInput.x * -1;
-        transform.position += side_world * speed * Time.deltaTime * keyInput.y * -1;
+        transform.position += movement;
         transform.Rotate(Vector3.up, mouseInput.x * rotationSpeed);
     }
 }
