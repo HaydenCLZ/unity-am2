@@ -13,7 +13,7 @@ public class SpiderNPCController : MonoBehaviour {
     public bool showDebug; //bool that can draw debug lines for better understanding of the NPC spider.
 
     [Header("Spider Reference")]
-    public Spider spider; //reference to spider class
+    //public Spider spider; //reference to spider class
 
     private float perlinDirectionStep = 0.07f;
     private float perlinSpeedStep = 0.5f;
@@ -23,8 +23,9 @@ public class SpiderNPCController : MonoBehaviour {
     private Vector3 X;
     private Vector3 Y;
 
-    private void Awake() {
-        Random.InitState(System.DateTime.Now.Millisecond) //initialize a number generator based on current millisecond
+    private void Awake()
+    {
+        Random.InitState(System.DateTime.Now.Millisecond); //initialize a number generator based on current millisecond
         startValue = Random.value;
 
         //Initialize Coordinate System based on the spider's orientation.
@@ -58,7 +59,7 @@ public class SpiderNPCController : MonoBehaviour {
         Y = newY;
     }
 
-    private Vector3 getRandomDirection() //get random values between [-1,1] using perlin noise
+    private Vector3 getRandomDirection(){ //get random values between [-1,1] using perlin noise
         float vertical = 2.0f * (Mathf.PerlinNoise(Time.time * perlinDirectionStep, startValue) - 0.5f);
         float horizontal = 2.0f * (Mathf.PerlinNoise(Time.time * perlinDirectionStep, startValue + 0.3f) - 0.5f);
         return (X * horizontal + Z * vertical).normalized;
