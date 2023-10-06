@@ -67,12 +67,12 @@ public class CapsuleControler : MonoBehaviour
                 moving = true;
             }
         }
-        forward *= speed * Time.deltaTime * keyInput.x * -4;
+        forward *= speed * Time.deltaTime * keyInput.x * -1;
         side *= speed * Time.deltaTime * keyInput.y * -1;
         movement = forward + side;  
         if(jumping)
         {
-            movement = movement + Vector3.up*10.0f;
+            movement = movement + Vector3.up;
         }
         if (moving)
         {
