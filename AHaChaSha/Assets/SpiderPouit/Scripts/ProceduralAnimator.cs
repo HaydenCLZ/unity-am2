@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProceduralAnimator : MonoBehaviour
 {
-    class ProceduralLimb
+    class ProceduralLeg
     {
         public Transform IKTarget;
         public Vector3 defaultPosition;
@@ -16,15 +16,15 @@ public class ProceduralAnimator : MonoBehaviour
     [SerializeField] private LayerMask _groundLayerMask = default;
 
     [Header("Steps")]
-    [SerializeField] private Transform[] _limbTargets;
+    [SerializeField] private Transform[] _legsTargets;
     [SerializeField] private float _stepSize = 1;
     [SerializeField] private float _stepHeight = 1;
     [SerializeField] private int _smoothness = 1;
     [SerializeField] private float _raycastRange = 2;
     [SerializeField] private float _feetOffset = 0;
 
-    private int _nLimbs;
-    private ProceduralLimb[] _limbs;
+    private int _nbLegs;
+    private ProceduralLeg[] _legs;
 
     private Vector3 _lastBodyPosition;
     private Vector3 _velocity;
@@ -32,17 +32,17 @@ public class ProceduralAnimator : MonoBehaviour
 
     void Start()
     {
-        _nLimbs = _limbTargets.Length;
-        _limbs = new ProceduralLimb[_nLimbs];
-        Transform t;
-        for (int i = 0; i < _nLimbs; ++i)
+        _nbLegs = _legsTargets.Length;
+        _legs = new ProceduralLeg[_nbLegs];
+        Transform target;
+        for (int i = 0; i < _nbLegs; ++i)
         {
-            t = _limbTargets[i];
-            _limbs[i] = new ProceduralLimb()
+            target = _legsTargets[i];
+            _legs[i] = new ProceduralLeg()
             {
-                IKTarget = t,
-                defaultPosition = t.localPosition,
-                lastPosition = t.position,
+                IKTarget = target,
+                defaultPosition = target.localPosition,
+                lastPosition = target.position,
                 moving = false
             };
         }
@@ -57,7 +57,7 @@ public class ProceduralAnimator : MonoBehaviour
 
         if (_velocity.magnitude > Mathf.Epsilon)
             _HandleMovement();
-        /*else if (!_allLimbsResting)
+        /*if (!_allLimbsResting)
             _BackToRestPosition();*/
     }
 
@@ -65,33 +65,34 @@ public class ProceduralAnimator : MonoBehaviour
     {
         _lastBodyPosition = transform.position;
 
-        Vector3[] desiredPositions = new Vector3[_nLimbs];
-        float greatestDistance = _stepSize;
+        Vector3[] targetPositions = new Vector3[_nbLegs];
+        float tempStepSize = _stepSize;
         int limbToMove = -1;
 
-        for (int i = 0; i < _nLimbs; ++i)
+        for (int i = 0; i < _nbLegs; ++i)
         {
-            if (_limbs[i].moving) continue; // limb already moving: can't move again!
+            if (_legs[i].moving) continue; // limb already moving: can't move again!
 
-            desiredPositions[i] = transform.TransformPoint(_limbs[i].defaultPosition);
-            float dist = (desiredPositions[i] + _velocity - _limbs[i].lastPosition).magnitude;
-            if (dist > greatestDistance)
+            targetPositions[i] = transform.TransformPoint(_legs[i].defaultPosition);
+            float dist = (targetPositions[i] + _velocity - _legs[i].lastPosition).magnitude;
+            if (dist > tempStepSize)
             {
-                greatestDistance = dist;
+                tempStepSize = dist;
                 limbToMove = i;
             }
         }
 
-        for (int i = 0; i < _nLimbs; ++i)
+        for (int i = 0; i < _nbLegs; ++i)
             if (i != limbToMove)
-                _limbs[i].IKTarget.position = _limbs[i].lastPosition;
+                _legs[i].IKTarget.position = _legs[i].lastPosition;
 
         if (limbToMove != -1)
         {
-            Vector3 targetOffset = desiredPositions[limbToMove] - _limbs[limbToMove].IKTarget.position;
-            Vector3 targetPoint = desiredPositions[limbToMove] + _velocity.magnitude * targetOffset;
+            Vector3 targetPoint = targetPositions[limbToMove];
+            
             targetPoint = _RaycastToGround(targetPoint, transform.up);
-            targetPoint += transform.up * _feetOffset;
+            _limbs[limbToMove].IKTarget.position = targetPoint;
+            _limbs[limbToMove].lastPosition = targetPoint;
 
             _allLimbsResting = false;
             StartCoroutine(_Stepping(limbToMove, targetPoint));
@@ -101,14 +102,13 @@ public class ProceduralAnimator : MonoBehaviour
     private void _BackToRestPosition()
     {
         Vector3 targetPoint; float dist;
-        for (int i = 0; i < _nLimbs; ++i)
+        for (int i = 0; i < _nbLegs; ++i)
         {
-            if (_limbs[i].moving) continue; // limb already moving: can't move again!
+            if (_legs[i].moving) continue; // limb already moving: can't move again!
 
             targetPoint = _RaycastToGround(
-                transform.TransformPoint(_limbs[i].defaultPosition),
-                transform.up) + transform.up * _feetOffset;
-            dist = (targetPoint - _limbs[i].lastPosition).magnitude;
+                transform.TransformPoint(_legs[i].defaultPosition), transform.up) + transform.up * _feetOffset;
+            dist = (targetPoint - _legs[i].lastPosition).magnitude;
             if (dist > 0.005f)
             {
                 StartCoroutine(_Stepping(i, targetPoint));
@@ -128,19 +128,19 @@ public class ProceduralAnimator : MonoBehaviour
         return point;
     }
 
-    private IEnumerator _Stepping(int limbIdx, Vector3 targetPosition)
+    private IEnumerator _Stepping(int legIdx, Vector3 targetPosition)
     {
-        _limbs[limbIdx].moving = true;
-        Vector3 startPosition = _limbs[limbIdx].lastPosition;
+        _legs[legIdx].moving = true;
+        Vector3 startPosition = _legs[legIdx].lastPosition;
         float t;
         for (int i = 1; i <= _smoothness; ++i)
         {
             t = i / (_smoothness + 1f);
-            _limbs[limbIdx].IKTarget.position = Vector3.Lerp(startPosition, targetPosition, t)+ transform.up * Mathf.Sin(t * Mathf.PI) * _stepHeight;
+            _legs[legIdx].IKTarget.position = Vector3.Lerp(startPosition, targetPosition, t);
             yield return new WaitForFixedUpdate();
         }
-        _limbs[limbIdx].IKTarget.position = targetPosition;
-        _limbs[limbIdx].lastPosition = targetPosition;
-        _limbs[limbIdx].moving = false;
+        _legs[legIdx].IKTarget.position = targetPosition;
+        _legs[legIdx].lastPosition = targetPosition;
+        _legs[legIdx].moving = false;
     }
 }
