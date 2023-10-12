@@ -4,28 +4,32 @@ using UnityEngine;
 
 public class simpleController : MonoBehaviour
 {
-    public Rigidbody cntroller;
-    public Transform cam;
+    private CharacterController controller;
+    private Vector3 playerVelocity;
+    private bool groundedPlayer;
+    [SerializeField] private float playerSpeed = 2.0f;
+    private float jumpHeight = 1.0f;
+    private float gravityValue = -9.81f;
 
-    public float speed = 6;
-    Vector3 velocity;
-
-    float turnSmoothVelocity;
-    public float turnSmoothTime = 0.1f;
+    private void Start()
+    {
+        controller = gameObject.GetComponent<CharacterController>();
+    }
 
     void Update()
     {
-
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-
-        if (direction.magnitude >= 0.1f && cntroller.velocity.magnitude < 4)
+        groundedPlayer = controller.isGrounded;
+        if (groundedPlayer && playerVelocity.y < 0)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            playerVelocity.y = 0f;
+        }
 
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            cntroller.AddForce(moveDir.normalized * speed * Time.deltaTime);
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        controller.Move(move * Time.deltaTime * playerSpeed);
+
+        if (move != Vector3.zero)
+        {
+            gameObject.transform.forward = move;
         }
     }
 }

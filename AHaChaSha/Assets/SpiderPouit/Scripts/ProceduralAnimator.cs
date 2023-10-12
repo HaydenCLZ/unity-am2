@@ -27,6 +27,9 @@ public class ProceduralAnimator : MonoBehaviour
     private ProceduralLimb[] _limbs;
 
     private Vector3 _lastBodyPosition;
+    private Vector3 _lastForward;
+    private Vector3 _lastBodyUp;
+
     private Vector3 _velocity;
     private bool _allLimbsResting;
 
@@ -54,11 +57,13 @@ public class ProceduralAnimator : MonoBehaviour
     void FixedUpdate()
     {
         _velocity = transform.position - _lastBodyPosition;
-
+        _lastForward = transform.forward;
         if (_velocity.magnitude > Mathf.Epsilon)
             _HandleMovement();
         else if (!_allLimbsResting)
             _BackToRestPosition();
+        rotateBody();
+
     }
 
     private void _HandleMovement()
@@ -96,6 +101,7 @@ public class ProceduralAnimator : MonoBehaviour
             _allLimbsResting = false;
             StartCoroutine(_Stepping(limbToMove, targetPoint));
         }
+        
     }
 
     private void _BackToRestPosition()
@@ -123,9 +129,20 @@ public class ProceduralAnimator : MonoBehaviour
         Vector3 point = pos;
 
         Ray ray = new Ray(pos + _raycastRange * up, -up);
-        if (Physics.Raycast(ray, out RaycastHit hit, 2f * _raycastRange, _groundLayerMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _groundLayerMask))
             point = hit.point;
         return point;
+    }
+
+    void rotateBody()
+    {
+        Vector3 v1 = _limbTargets[1].position - _limbTargets[0].position;
+        Vector3 v2 = _limbTargets[3].position - _limbTargets[2].position;
+        Vector3 normal = Vector3.Cross(v1, v2).normalized;
+        Vector3 up = Vector3.Lerp(_lastBodyUp, normal, 1f / (float)(5f));
+        Debug.Log(up);
+        transform.rotation = Quaternion.LookRotation(_lastForward, transform.up) * Quaternion.FromToRotation(transform.up, up); ;
+        _lastBodyUp = transform.up;    
     }
 
     private IEnumerator _Stepping(int limbIdx, Vector3 targetPosition)
@@ -137,8 +154,7 @@ public class ProceduralAnimator : MonoBehaviour
         {
             t = i / (_smoothness + 1f);
             _limbs[limbIdx].IKTarget.position =
-                Vector3.Lerp(startPosition, targetPosition, t)
-                + transform.up * Mathf.Sin(t * Mathf.PI) * _stepHeight;
+                Vector3.Lerp(startPosition, targetPosition + new Vector3(0, Mathf.Sin(i / ((float)(_smoothness) + 1f) * Mathf.PI) * _stepHeight, 0), t);
             yield return new WaitForFixedUpdate();
         }
         _limbs[limbIdx].IKTarget.position = targetPosition;
