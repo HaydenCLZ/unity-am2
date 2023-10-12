@@ -57,12 +57,11 @@ public class ProceduralAnimator : MonoBehaviour
     void FixedUpdate()
     {
         _velocity = transform.position - _lastBodyPosition;
-        _lastForward = transform.forward;
         if (_velocity.magnitude > Mathf.Epsilon)
             _HandleMovement();
         else if (!_allLimbsResting)
             _BackToRestPosition();
-        rotateBody();
+        //rotateBody();
 
     }
 
@@ -141,7 +140,7 @@ public class ProceduralAnimator : MonoBehaviour
         Vector3 normal = Vector3.Cross(v1, v2).normalized;
         Vector3 up = Vector3.Lerp(_lastBodyUp, normal, 1f / (float)(5f));
         Debug.Log(up);
-        transform.rotation = Quaternion.LookRotation(_lastForward, transform.up) * Quaternion.FromToRotation(transform.up, up); ;
+        transform.up = up;
         _lastBodyUp = transform.up;    
     }
 
