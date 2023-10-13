@@ -28,7 +28,8 @@ public class simpleController : MonoBehaviour
         controller.Move(move * Time.deltaTime * playerSpeed);
         if (move != Vector3.zero)
         {
-            gameObject.transform.forward = move;
+            float angle = Vector3.Angle(move, Vector3.up);
+            gameObject.transform.forward = Quaternion.AngleAxis(angle, Vector3.up) * move;
         }
     }
 }
