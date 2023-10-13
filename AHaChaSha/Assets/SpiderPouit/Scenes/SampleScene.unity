@@ -1134,8 +1134,8 @@ Transform:
   m_GameObject: {fileID: 738764378}
   serializedVersion: 2
   m_LocalRotation: {x: -0.13052624, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: -13.73, y: -0.37, z: 14.06}
-  m_LocalScale: {x: 10, y: 2, z: 10}
+  m_LocalPosition: {x: -13.73, y: -0.37, z: 14.05}
+  m_LocalScale: {x: 10, y: 2, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2068438305}
@@ -1872,7 +1872,7 @@ MeshCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1174427992
@@ -1993,11 +1993,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1380858711}
   - component: {fileID: 1380858712}
-  - component: {fileID: 1380858717}
   - component: {fileID: 1380858719}
-  - component: {fileID: 1380858718}
   - component: {fileID: 1380858720}
-  - component: {fileID: 1380858721}
   - component: {fileID: 1380858722}
   m_Layer: 0
   m_Name: Robot-Quadruped
@@ -2039,45 +2036,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   _speed: 10
---- !u!143 &1380858717
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1380858710}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Height: 0
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.84, z: 0}
---- !u!114 &1380858718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1380858710}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9f7d7db6213d6c47a0544147911f47a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSpeed: 5
 --- !u!114 &1380858719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2085,7 +2043,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380858710}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9a70ee0755fc4b9c94f652cd6c3257d, type: 3}
   m_Name: 
@@ -2128,29 +2086,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
---- !u!135 &1380858721
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1380858710}
-  m_Material: {fileID: 13400000, guid: 53e2dcb9e11d0a044b49ff010b82cad0, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 1.45
-  m_Center: {x: 0, y: 1.31, z: 0}
 --- !u!114 &1380858722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2168,12 +2105,13 @@ MonoBehaviour:
   - {fileID: 1787937820}
   - {fileID: 1512596469}
   - {fileID: 1620733139}
-  stepSize: 0.15
-  smoothness: 8
+  stepSize: 0.1
+  smoothness: 4
+  rotationSmoothness: 5
   stepHeight: 0.15
   sphereCastRadius: 0.125
   bodyOrientation: 1
-  raycastRange: 1.5
+  raycastRange: 2.45
 --- !u!1 &1388052955
 GameObject:
   m_ObjectHideFlags: 0
