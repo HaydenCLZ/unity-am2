@@ -31,7 +31,7 @@ public class canClimbAnywhere : MonoBehaviour
         res[1] = Vector3.zero;
         RaycastHit hit;
         Ray ray = new Ray(point + halfRange * up / 2f, - up);
-        if (RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(ray, sphereCastRadius, out hit, 2f * halfRange, hitColor:Color.green))
+        if (Physics.SphereCast(ray, sphereCastRadius, out hit, 2f * halfRange))
         {
             res[0] = hit.point;
             res[1] = hit.normal;
@@ -78,6 +78,7 @@ public class canClimbAnywhere : MonoBehaviour
 
     void FixedUpdate()
     {
+        
         velocity = transform.position - lastBodyPos;
         velocity = (velocity + smoothness * lastVelocity) / (smoothness + 1f);
 
@@ -133,13 +134,13 @@ public class canClimbAnywhere : MonoBehaviour
                 Vector3 normal = Vector3.Cross(v1, v2).normalized;
                 Vector3 up = Vector3.Lerp(lastBodyUp, normal, 1f / (float)(smoothness + 1));
                 Quaternion targetRotation = Quaternion.LookRotation(transform.forward, up);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSmoothness * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSmoothness);
                 lastBodyUp = transform.up;
             }
 
         }
 
-    /*private void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         for (int i = 0; i < nbLegs; ++i)
         {
@@ -148,5 +149,5 @@ public class canClimbAnywhere : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.TransformPoint(defaultLegPositions[i]), stepSize);
         }
-    }*/
+    }
 }
