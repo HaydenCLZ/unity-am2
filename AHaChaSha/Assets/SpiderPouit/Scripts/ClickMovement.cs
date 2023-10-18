@@ -7,7 +7,12 @@ using static UnityEngine.GraphicsBuffer;
 public class ClickMovement : MonoBehaviour
 {
     [SerializeField] private LayerMask _groundLayerMask;
-    [SerializeField] private float _speed = 10f;
+    [SerializeField] private float _moveSpeed = 10f;
+    [SerializeField] private float _turnSpeed = 150;
+
+    private bool _isGrounded;
+    public float ForwardInput { get; set; }
+    public float TurnInput { get; set; }
 
     private Camera _cam;
     private Ray _ray;
@@ -23,46 +28,50 @@ public class ClickMovement : MonoBehaviour
     void Awake()
     {
         _cam = Camera.main;
+        rb = GetComponent<Rigidbody>();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     void Start()
     {
         _targetPosition = transform.position;
         _targetRot = transform.rotation;
-        rotationSmoothness = GetComponent<canClimbAnywhere>().rotationSmoothness;
-        rb = GetComponent<Rigidbody>();
-        boxCollider = GetComponent<BoxCollider>();
     }
 
     void FixedUpdate()
     {
-        
-        if (Input.GetMouseButtonDown(0))
+        CheckGrounded();
+        int vertical = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
+        int horizontal = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
+        ForwardInput = vertical;
+        TurnInput = horizontal;
+        if (TurnInput != 0f)
         {
-            _ray = _cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit _hit;
-            if (Physics.Raycast(_ray, out _hit, Mathf.Infinity, _groundLayerMask))
-            {
-                _targetRot = Quaternion.LookRotation(_hit.point - transform.position, transform.up);
-                _targetPosition = _hit.point;
-                Debug.Log(_hit.point);
-            }
+            float angle = Mathf.Clamp(TurnInput, -1f, 1f) * _turnSpeed;
+            transform.Rotate(transform.up, Time.fixedDeltaTime * angle);
         }
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, _targetRot, rotationSmoothness);
-        if (Quaternion.Angle(transform.rotation, _targetRot) < 1)
-            if ((_targetPosition - transform.position).sqrMagnitude < 0.02f)
-                transform.position = _targetPosition;
-            else
-                transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
-        /*if (!(isGrounded()))
+        if (_isGrounded)
         {
-            rb.AddForce(-transform.up * 0.981f);
-        }*/
+            // Reset the velocity
+            rb.velocity = Vector3.zero;
+
+            // Apply a forward or backward velocity based on player input
+            rb.velocity += transform.forward * Mathf.Clamp(ForwardInput, -1f, 1f) * _moveSpeed;
+        }
     }
 
-    private bool isGrounded()
+    private void CheckGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, 0.1f);
+        _isGrounded = false;
+        Vector3 boxBottom = transform.TransformPoint(boxCollider.center - Vector3.up * boxCollider.size.y/2f);
+        float size = transform.TransformVector(boxCollider.size.y/2f, 0f, 0f).magnitude;
+        Ray ray = new Ray(boxBottom + transform.up * .01f, -transform.up);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, size * 5f))
+        {
+            if (hit.distance < 0.2f)
+               _isGrounded = true;
+        }
     }
 
     private float distToGround()

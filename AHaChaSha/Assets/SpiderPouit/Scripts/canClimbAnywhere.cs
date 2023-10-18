@@ -132,12 +132,9 @@ public class canClimbAnywhere : MonoBehaviour
                 Vector3 v1 = legTargets[1].position - legTargets[0].position;
                 Vector3 v2 = legTargets[3].position - legTargets[2].position;
                 Vector3 normal = Vector3.Cross(v1, v2).normalized;
-                Vector3 up = Vector3.Lerp(lastBodyUp, normal, 1f / (float)(smoothness + 1));
-                Quaternion targetRotation = Quaternion.LookRotation(transform.forward, up);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSmoothness);
+                transform.up = Vector3.Lerp(lastBodyUp, normal, 1f / (float)(smoothness + 1));
                 lastBodyUp = transform.up;
             }
-
         }
 
     private void OnDrawGizmosSelected()
