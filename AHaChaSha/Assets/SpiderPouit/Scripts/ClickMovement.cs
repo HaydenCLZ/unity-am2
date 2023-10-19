@@ -34,42 +34,34 @@ public class ClickMovement : MonoBehaviour
 
     void Start()
     {
-        _targetPosition = transform.position;
-        _targetRot = transform.rotation;
     }
 
     void FixedUpdate()
     {
         CheckGrounded();
-        int vertical = Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
-        int horizontal = Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
+        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
         ForwardInput = vertical;
         TurnInput = horizontal;
         if (TurnInput != 0f)
         {
-            float angle = Mathf.Clamp(TurnInput, -1f, 1f) * _turnSpeed;
-            transform.Rotate(transform.up, Time.fixedDeltaTime * angle);
+            float angle = TurnInput * _turnSpeed;
+            transform.Rotate(0, angle, 0, Space.Self);  
         }
         if (_isGrounded)
         {
-            // Reset the velocity
-            rb.velocity = Vector3.zero;
-
-            // Apply a forward or backward velocity based on player input
-            rb.velocity += transform.forward * Mathf.Clamp(ForwardInput, -1f, 1f) * _moveSpeed;
+            transform.position += (transform.forward * ForwardInput * Time.deltaTime * _moveSpeed);
         }
+        
     }
 
     private void CheckGrounded()
     {
-        _isGrounded = false;
-        Vector3 boxBottom = transform.TransformPoint(boxCollider.center - Vector3.up * boxCollider.size.y/2f);
-        float size = transform.TransformVector(boxCollider.size.y/2f, 0f, 0f).magnitude;
-        Ray ray = new Ray(boxBottom + transform.up * .01f, -transform.up);
+        _isGrounded = true;
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, size * 5f))
+        if (Physics.Raycast(transform.GetChild(transform.childCount-1).position, -transform.up, out hit, Mathf.Infinity))
         {
-            if (hit.distance < 0.2f)
+            if (hit.distance <= 0.5f)
                _isGrounded = true;
         }
     }

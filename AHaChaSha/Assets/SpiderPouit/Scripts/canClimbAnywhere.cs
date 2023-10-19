@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class canClimbAnywhere : MonoBehaviour
 {
@@ -24,7 +27,6 @@ public class canClimbAnywhere : MonoBehaviour
     private Vector3 lastBodyPos;
 
     private float velocityMultiplier = 1f;
-
     Vector3[] MatchToSurfaceFromAbove(Vector3 point, float halfRange, Vector3 up)
     {
         Vector3[] res = new Vector3[2];
@@ -33,6 +35,7 @@ public class canClimbAnywhere : MonoBehaviour
         Ray ray = new Ray(point + halfRange * up / 2f, - up);
         if (Physics.SphereCast(ray, sphereCastRadius, out hit, 2f * halfRange))
         {
+            Debug.Log(hit.transform.ToString());
             res[0] = hit.point;
             res[1] = hit.normal;
         }
@@ -46,7 +49,6 @@ public class canClimbAnywhere : MonoBehaviour
     void Start()
     {
         lastBodyUp = transform.up;
-
         nbLegs = legTargets.Length;
         defaultLegPositions = new Vector3[nbLegs];
         lastLegPositions = new Vector3[nbLegs];
@@ -87,7 +89,42 @@ public class canClimbAnywhere : MonoBehaviour
         else
             lastVelocity = velocity;
 
+        move();
+        //bodyPositionToGround();
+        rotateBody();
+        lastBodyPos = transform.position;
+    }
+    public void rotateBody()
+    {
+        Vector3 v1 = legTargets[1].position - legTargets[0].position;
+        Vector3 v2 = legTargets[3].position - legTargets[2].position;
+        Vector3 normal = Vector3.Cross(v1, v2).normalized;
+        Vector3 up = Vector3.Lerp(lastBodyUp, normal, 1f / (float)(smoothness + 1));
+        transform.rotation = Quaternion.FromToRotation(transform.up, up) * transform.rotation;
+        lastBodyUp = up;
+    }
 
+    public void bodyPositionToGround()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity))
+        {
+            Vector3 pos = hit.point; //get the position where the ray hit the ground
+
+            //shoot a raycast up from that position towards the object
+            Ray upRay = new Ray(pos, transform.position - pos);
+
+            //get a point (vector3) in that ray 8 units from its origin
+            Vector3 upDist = upRay.GetPoint(8);
+
+            //smoothly interpolate its position
+            transform.position = Vector3.Lerp(transform.position, upDist, 0.2f);
+        }
+
+    }
+
+    public void move()
+    {
         Vector3[] desiredPositions = new Vector3[nbLegs];
         int indexToMove = -1;
         float maxDistance = stepSize;
@@ -122,28 +159,15 @@ public class canClimbAnywhere : MonoBehaviour
                 StartCoroutine(PerformStep(indexToMove, positionAndNormalFwd[0]));
             }
         }
-        lastBodyPos = transform.position;
-        rotateBody();
     }
-    public void rotateBody()
-        {
-            if (nbLegs > 3 && bodyOrientation)
-            {
-                Vector3 v1 = legTargets[1].position - legTargets[0].position;
-                Vector3 v2 = legTargets[3].position - legTargets[2].position;
-                Vector3 normal = Vector3.Cross(v1, v2).normalized;
-                transform.up = Vector3.Lerp(lastBodyUp, normal, 1f / (float)(smoothness + 1));
-                lastBodyUp = transform.up;
-            }
-        }
 
     private void OnDrawGizmosSelected()
     {
         for (int i = 0; i < nbLegs; ++i)
         {
-            Gizmos.color = Color.red;
+            Gizmos.color = UnityEngine.Color.red;
             Gizmos.DrawWireSphere(legTargets[i].position, 0.5f);
-            Gizmos.color = Color.green;
+            Gizmos.color = UnityEngine.Color.green;
             Gizmos.DrawWireSphere(transform.TransformPoint(defaultLegPositions[i]), stepSize);
         }
     }
