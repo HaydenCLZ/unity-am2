@@ -5,7 +5,7 @@ using UnityEngine;
 public class CapsuleControler : MonoBehaviour
 {
     public float speed = 50.0f;
-    public float rotationSpeed = 100.0f;
+    public float rotationSpeed = 20.0f;
     int collide = 0;
     bool moving = false;
     bool jumping = false;
