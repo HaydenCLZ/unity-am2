@@ -21,12 +21,39 @@ public class canClimbAnywhere : MonoBehaviour
     private Vector3 lastBodyUp;
     private bool[] legMoving;
     private int nbLegs;
+
+    [SerializeField] private Transform raycaster;
     
     private Vector3 velocity;
     private Vector3 lastVelocity;
     private Vector3 lastBodyPos;
 
     private float velocityMultiplier = 1f;
+
+    public bool ArcCast(Vector3 center, Quaternion rotation, float angle, float radius, int precision, LayerMask layer, out RaycastHit hit)
+    {
+        rotation *= Quaternion.Euler(-angle / 2, 0, 0);
+        float dAngle = angle / precision;
+        Vector3 forwardRadius = Vector3.forward * radius;
+
+        Vector3 A, B, AB;
+        A = forwardRadius;
+        B = Quaternion.Euler(dAngle, 0, 0) * forwardRadius;
+        AB = B - A;
+        float AB_magnitude = AB.magnitude * 1.001f;
+        for (int i = 0; i < precision; i++)
+        {
+            A = center + rotation * forwardRadius;
+            rotation *= Quaternion.Euler(dAngle, 0, 0);
+            B = center + rotation * forwardRadius;
+            AB = B - A;
+            Debug.DrawRay(A, AB, UnityEngine.Color.red);
+            if (Physics.Raycast(A, AB, out hit, Mathf.Infinity, layer))
+                return true;
+        }
+        hit = new RaycastHit();
+        return false;
+    }
     Vector3[] MatchToSurfaceFromAbove(Vector3 point, float halfRange, Vector3 up)
     {
         Vector3[] res = new Vector3[2];
@@ -35,7 +62,6 @@ public class canClimbAnywhere : MonoBehaviour
         Ray ray = new Ray(point + halfRange * up / 2f, - up);
         if (Physics.SphereCast(ray, sphereCastRadius, out hit, 2f * halfRange))
         {
-            Debug.Log(hit.transform.ToString());
             res[0] = hit.point;
             res[1] = hit.normal;
         }
@@ -96,12 +122,18 @@ public class canClimbAnywhere : MonoBehaviour
     }
     public void rotateBody()
     {
+        RaycastHit hit;
+        if (ArcCast(raycaster.position, transform.rotation, 20, 1, 8, 0, out hit))
+        {
+            transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+        }
+        /*
         Vector3 v1 = legTargets[1].position - legTargets[0].position;
         Vector3 v2 = legTargets[3].position - legTargets[2].position;
         Vector3 normal = Vector3.Cross(v1, v2).normalized;
         Vector3 up = Vector3.Lerp(lastBodyUp, normal, 1f / (float)(smoothness + 1));
         transform.rotation = Quaternion.FromToRotation(transform.up, up) * transform.rotation;
-        lastBodyUp = up;
+        lastBodyUp = up;*/
     }
 
     public void bodyPositionToGround()
