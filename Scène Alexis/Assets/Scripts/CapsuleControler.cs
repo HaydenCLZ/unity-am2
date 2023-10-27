@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CapsuleControler : MonoBehaviour
 {
-    public float speed = 50.0f;
-    public float rotationSpeed = 20.0f;
+    public float speed = 30.0f;
+    public float rotationSpeed = 5.0f;
     int collide = 0;
     bool moving = false;
     bool jumping = false;
