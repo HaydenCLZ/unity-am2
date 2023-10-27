@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -597,7 +597,7 @@ MonoBehaviour:
     m_Visible: 1
   - m_Transform: {fileID: 567181319}
     m_Style:
-      shape: {fileID: 4300000, guid: c6793350c150f456688e39a81f97364a, type: 2}
+      shape: {fileID: 0}
       color: {r: 1, g: 0, b: 0, a: 0.5}
       size: 2
       position: {x: 0, y: 0, z: 0}
@@ -653,7 +653,7 @@ MonoBehaviour:
     m_Visible: 1
   - m_Transform: {fileID: 450043188}
     m_Style:
-      shape: {fileID: 4300000, guid: c6793350c150f456688e39a81f97364a, type: 2}
+      shape: {fileID: 0}
       color: {r: 1, g: 0, b: 0, a: 0.5}
       size: 2
       position: {x: 0, y: 0, z: 0}
@@ -661,7 +661,7 @@ MonoBehaviour:
     m_Visible: 1
   - m_Transform: {fileID: 41105111}
     m_Style:
-      shape: {fileID: 4300000, guid: c6793350c150f456688e39a81f97364a, type: 2}
+      shape: {fileID: 0}
       color: {r: 1, g: 0, b: 0, a: 0.5}
       size: 2
       position: {x: 0, y: 0, z: 0}
@@ -669,7 +669,7 @@ MonoBehaviour:
     m_Visible: 1
   - m_Transform: {fileID: 1106655387}
     m_Style:
-      shape: {fileID: 4300000, guid: c6793350c150f456688e39a81f97364a, type: 2}
+      shape: {fileID: 0}
       color: {r: 1, g: 0, b: 0, a: 0.5}
       size: 2
       position: {x: 0, y: 0, z: 0}
@@ -2201,6 +2201,7 @@ MonoBehaviour:
   sphereCastRadius: 0.125
   bodyOrientation: 1
   raycastRange: 2
+  raycaster: {fileID: 559231318}
 --- !u!1 &1450835931
 GameObject:
   m_ObjectHideFlags: 0
