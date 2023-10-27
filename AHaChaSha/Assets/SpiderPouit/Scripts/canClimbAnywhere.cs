@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using TMPro;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -23,6 +25,8 @@ public class canClimbAnywhere : MonoBehaviour
     private int nbLegs;
 
     [SerializeField] private Transform raycaster;
+
+    
     
     private Vector3 velocity;
     private Vector3 lastVelocity;
@@ -126,18 +130,12 @@ public class canClimbAnywhere : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (ArcCast(raycaster.position, transform.rotation, 270, 1.75f, 6, 0, out hit))
+        if (ArcCast(raycaster.position, transform.rotation, 270, 1.60f, 8, 0, out hit))
         {
             Vector3 up = Vector3.Lerp(transform.up, hit.normal, 1f / (float)(smoothness + 1));
             transform.rotation = Quaternion.FromToRotation(transform.up, up) * transform.rotation;
+
         }
-        /*
-        Vector3 v1 = legTargets[1].position - legTargets[0].position;
-        Vector3 v2 = legTargets[3].position - legTargets[2].position;
-        Vector3 normal = Vector3.Cross(v1, v2).normalized;
-        Vector3 up = Vector3.Lerp(lastBodyUp, normal, 1f / (float)(smoothness + 1));
-        transform.rotation = Quaternion.FromToRotation(transform.up, up) * transform.rotation;
-        lastBodyUp = up;*/
     }
 
     public void bodyPositionToGround()
@@ -147,7 +145,7 @@ public class canClimbAnywhere : MonoBehaviour
         if (Physics.Raycast(raycaster.position, -transform.up, out hitGround, 0.45f))
         {
             Vector3 pos = hitGround.point; //get the position where the ray hit the ground
-            Debug.Log("hit!");
+
             //shoot a raycast up from that position towards the object
             Ray upRay = new Ray(pos, transform.position - pos);
 

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using Unity.Burst.CompilerServices;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -9,6 +11,11 @@ public class ClickMovement : MonoBehaviour
     [SerializeField] private LayerMask _groundLayerMask;
     [SerializeField] private float _moveSpeed = 10f;
     [SerializeField] private float _turnSpeed = 150;
+
+    [SerializeField] public float hoverDistance;
+    [SerializeField] private Transform raycaster;
+    [SerializeField] private Transform backRaycaster;
+    [SerializeField] private Transform frontRaycaster;
 
     private bool _isGrounded;
     public float ForwardInput { get; set; }
@@ -28,8 +35,6 @@ public class ClickMovement : MonoBehaviour
     void Awake()
     {
         _cam = Camera.main;
-        rb = GetComponent<Rigidbody>();
-        boxCollider = GetComponent<BoxCollider>();
     }
 
     void Start()
