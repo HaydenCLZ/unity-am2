@@ -1,11 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using TMPro;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 public class canClimbAnywhere : MonoBehaviour
 {
@@ -26,7 +21,7 @@ public class canClimbAnywhere : MonoBehaviour
 
     [SerializeField] private Transform raycaster;
 
-    
+    private float controllerInput;
     
     private Vector3 velocity;
     private Vector3 lastVelocity;
@@ -34,38 +29,14 @@ public class canClimbAnywhere : MonoBehaviour
 
     private float velocityMultiplier = 1f;
 
-    public bool ArcCast(Vector3 center, Quaternion rotation, float angle, float radius, int precision, LayerMask layer, out RaycastHit hit)
-    {
-        rotation *= Quaternion.Euler(-angle / 2, 0, 0);
-        Vector3 forwardRadius = Vector3.forward * radius;
-        float dAngle = angle / precision;
-        Vector3 A, B, AB;
-        A = forwardRadius;
-        B = Quaternion.Euler(dAngle, 0, 0) * forwardRadius;
-        AB = B - A;
-        float AB_magnitude = AB.magnitude * 1.001f;
+    private ClickMovement input;
 
-        for (int i = 0; i < precision; i++)
-        {
-            A = center + rotation * forwardRadius;
-            rotation *= Quaternion.Euler(dAngle, 0, 0);
-            B = center + rotation * forwardRadius;
-            AB = B - A;
-            Debug.DrawRay(A, AB, UnityEngine.Color.red);
-            if (Physics.Raycast(A, AB, out hit, AB_magnitude))
-            {
-                return true;
-            }
-        }
-        hit = new RaycastHit();
-        return false;
-    }
     Vector3[] MatchToSurfaceFromAbove(Vector3 point, float halfRange, Vector3 up)
     {
         Vector3[] res = new Vector3[2];
         res[1] = Vector3.zero;
         RaycastHit hit;
-        Ray ray = new Ray(point + halfRange * up / 2f, - up);
+        Ray ray = new (point + halfRange * up / 2f, - up);
         if (Physics.SphereCast(ray, sphereCastRadius, out hit, 2f * halfRange))
         {
             res[0] = hit.point;
@@ -92,6 +63,8 @@ public class canClimbAnywhere : MonoBehaviour
             legMoving[i] = false;
         }
         lastBodyPos = transform.position;
+        if (!TryGetComponent(out input)) { Debug.Log("Where clickmovement ?"); }
+        
     }
 
     IEnumerator PerformStep(int index, Vector3 targetPoint)
@@ -101,7 +74,7 @@ public class canClimbAnywhere : MonoBehaviour
         for(int i = 1; i <= smoothness; ++i)
         {
             legTargets[index].position = Vector3.Lerp(startPos, targetPoint, i / (float)(smoothness + 1f));
-            legTargets[index].position += transform.up * Mathf.Sin(i / (float)(smoothness + 1f) * Mathf.PI) * stepHeight;
+            legTargets[index].position += Mathf.Sin(i / (float)(smoothness + 1f) * Mathf.PI) * stepHeight * transform.up;
             yield return new WaitForFixedUpdate();
         }
         legTargets[index].position = targetPoint;
@@ -112,7 +85,7 @@ public class canClimbAnywhere : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+        controllerInput = input.ForwardInput;
         velocity = transform.position - lastBodyPos;
         velocity = (velocity + smoothness * lastVelocity) / (smoothness + 1f);
 
@@ -123,39 +96,20 @@ public class canClimbAnywhere : MonoBehaviour
 
         move();
         rotateBody();
-        bodyPositionToGround();
         lastBodyPos = transform.position;
     }
     public void rotateBody()
     {
-        RaycastHit hit;
-
-        if (ArcCast(raycaster.position, transform.rotation, 270, 1.60f, 8, 0, out hit))
+        int sign = 1;
+        if (controllerInput < 0)
+            sign = -1;
+       
+        if (CastExtension.ArcCast(raycaster.position, transform.rotation, 270*sign, 1.90f, 8, sign, out RaycastHit hit))
         {
             Vector3 up = Vector3.Lerp(transform.up, hit.normal, 1f / (float)(smoothness + 1));
             transform.rotation = Quaternion.FromToRotation(transform.up, up) * transform.rotation;
 
         }
-    }
-
-    public void bodyPositionToGround()
-    {
-        RaycastHit hitGround;
-        Debug.DrawRay(raycaster.position, -transform.up);
-        if (Physics.Raycast(raycaster.position, -transform.up, out hitGround, 0.45f))
-        {
-            Vector3 pos = hitGround.point; //get the position where the ray hit the ground
-
-            //shoot a raycast up from that position towards the object
-            Ray upRay = new Ray(pos, transform.position - pos);
-
-            //get a point (vector3) in that ray 8 units from its origin
-            Vector3 upDist = upRay.GetPoint(0.40f);
-
-            //smoothly interpolate its position
-            transform.position = Vector3.Lerp(transform.position, upDist, 0.2f);
-        }
-
     }
 
     public void move()

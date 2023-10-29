@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using Unity.Burst.CompilerServices;
-using UnityEditor.PackageManager;
+
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+
 
 public class ClickMovement : MonoBehaviour
 {
@@ -12,34 +8,10 @@ public class ClickMovement : MonoBehaviour
     [SerializeField] private float _moveSpeed = 10f;
     [SerializeField] private float _turnSpeed = 150;
 
-    [SerializeField] public float hoverDistance;
-    [SerializeField] private Transform raycaster;
-    [SerializeField] private Transform backRaycaster;
-    [SerializeField] private Transform frontRaycaster;
-
     private bool _isGrounded;
     public float ForwardInput { get; set; }
     public float TurnInput { get; set; }
 
-    private Camera _cam;
-    private Ray _ray;
-    private RaycastHit _hit;
-
-    private Vector3 _targetPosition;
-    private Quaternion _targetRot;
-    private float rotationSmoothness;
-    private Rigidbody rb;
-
-    private BoxCollider boxCollider;
-
-    void Awake()
-    {
-        _cam = Camera.main;
-    }
-
-    void Start()
-    {
-    }
 
     void FixedUpdate()
     {
@@ -55,7 +27,7 @@ public class ClickMovement : MonoBehaviour
         }
         if (_isGrounded)
         {
-            transform.position += (transform.forward * ForwardInput * Time.deltaTime * _moveSpeed);
+            transform.position += (_moveSpeed * ForwardInput * Time.deltaTime * transform.forward);
         }
         
     }
@@ -69,14 +41,6 @@ public class ClickMovement : MonoBehaviour
             if (hit.distance <= 0.5f)
                _isGrounded = true;
         }
-    }
-
-    private float distToGround()
-    {
-        RaycastHit hitG;
-        if (Physics.Raycast(transform.position, -transform.up, out hitG, Mathf.Infinity))
-            return Vector3.Distance(transform.TransformPoint(boxCollider.center), hitG.point) - boxCollider.size.y/2;
-        return Mathf.Infinity;
     }
 
 }
