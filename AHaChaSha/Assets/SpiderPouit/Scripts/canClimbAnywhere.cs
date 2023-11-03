@@ -36,8 +36,8 @@ public class canClimbAnywhere : MonoBehaviour
         Vector3[] res = new Vector3[2];
         res[1] = Vector3.zero;
         RaycastHit hit;
-        Ray ray = new (point + halfRange * up / 2f, - up);
-        if (Physics.SphereCast(ray, sphereCastRadius, out hit, 2f * halfRange))
+        Ray ray = new Ray(point + halfRange * up, -up);
+        if (Physics.Raycast(ray, out hit, 2f * halfRange))
         {
             res[0] = hit.point;
             res[1] = hit.normal;
@@ -136,17 +136,9 @@ public class canClimbAnywhere : MonoBehaviour
         {
             Vector3 targetPoint = desiredPositions[indexToMove] + Mathf.Clamp(velocity.magnitude * velocityMultiplier, 0.0f, 1.5f) * (desiredPositions[indexToMove] - legTargets[indexToMove].position) + velocity * velocityMultiplier;
 
-            Vector3[] positionAndNormalFwd = MatchToSurfaceFromAbove(targetPoint + velocity * velocityMultiplier, raycastRange, (transform.up - velocity * 100).normalized);
-            Vector3[] positionAndNormalBwd = MatchToSurfaceFromAbove(targetPoint + velocity * velocityMultiplier, raycastRange * (1f + velocity.magnitude), (transform.up + velocity * 75).normalized);
-
-            if (positionAndNormalFwd[1] == Vector3.zero)
-            {
-                StartCoroutine(PerformStep(indexToMove, positionAndNormalBwd[0]));
-            }
-            else
-            {
-                StartCoroutine(PerformStep(indexToMove, positionAndNormalFwd[0]));
-            }
+            Vector3[] positionAndNormal = MatchToSurfaceFromAbove(targetPoint, raycastRange, transform.up);
+            legMoving[0] = true;
+            StartCoroutine(PerformStep(indexToMove, positionAndNormal[0]));
         }
     }
 
