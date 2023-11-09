@@ -18,7 +18,6 @@ public class ClickMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        CheckGrounded();
         float vertical = Input.GetAxisRaw("Vertical");
         float horizontal = Input.GetAxisRaw("Horizontal");
         ForwardInput = vertical;

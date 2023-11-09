@@ -1210,9 +1210,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 400100, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1915489042}
-    - targetCorrespondingSourceObject: {fileID: 400100, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 635345311}
     - targetCorrespondingSourceObject: {fileID: 400098, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1279804789}
@@ -1489,12 +1486,12 @@ Transform:
   m_GameObject: {fileID: 635345310}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.68, y: -14.69, z: 24.18}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 963194228}
-  m_Father: {fileID: 1024474481}
+  m_Father: {fileID: 1380858711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &658625323 stripped
 Transform:
@@ -2163,7 +2160,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.27698007, y: -0.00008231001, z: -0.0064558326, w: 0.96085405}
-  m_LocalPosition: {x: 0.49, y: 21.83, z: -31.34}
+  m_LocalPosition: {x: -0.3, y: 6.2, z: -6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3367,6 +3364,7 @@ GameObject:
   - component: {fileID: 1380858711}
   - component: {fileID: 1380858712}
   - component: {fileID: 1380858722}
+  - component: {fileID: 1380858723}
   m_Layer: 0
   m_Name: Robot-Quadruped
   m_TagString: Untagged
@@ -3389,6 +3387,7 @@ Transform:
   m_Children:
   - {fileID: 174963690}
   - {fileID: 559231318}
+  - {fileID: 635345311}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1380858712
@@ -3435,6 +3434,21 @@ MonoBehaviour:
   bodyOrientation: 1
   raycastRange: 2
   raycaster: {fileID: 559231318}
+--- !u!114 &1380858723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380858710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d2563952860f345a2ce2008d77a59f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100
+  healthBar: {fileID: 0}
 --- !u!4 &1396547501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400082, guid: f5a9bd478ca094495a4520e37f57420d, type: 3}

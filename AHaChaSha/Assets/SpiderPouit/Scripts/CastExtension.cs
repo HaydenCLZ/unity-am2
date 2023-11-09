@@ -7,7 +7,6 @@ public class CastExtension
     {
         rotation *= Quaternion.Euler(-angle / 2, 0, 0);
         Vector3 forwardRadius = sign*radius * Vector3.forward ;
-        Debug.Log(forwardRadius);
         float dAngle = angle / precision;
         Vector3 A, B, AB;
         A = forwardRadius;
@@ -21,7 +20,6 @@ public class CastExtension
             rotation *= Quaternion.Euler(dAngle, 0, 0);
             B = center + rotation * forwardRadius;
             AB = B - A;
-            Debug.DrawRay(A, AB, UnityEngine.Color.red);
             if (Physics.Raycast(A, AB, out hit, AB_magnitude))
             {
                 return true;
