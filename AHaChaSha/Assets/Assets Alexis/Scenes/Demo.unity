@@ -22577,10 +22577,6 @@ MonoBehaviour:
     m_Bits: 1
   _moveSpeed: 5
   _turnSpeed: 3
-<<<<<<< Updated upstream
-  raycaster: {fileID: 286622342}
-  heightFromGround: 0.5
-=======
 --- !u!114 &1850076751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22599,7 +22595,6 @@ MonoBehaviour:
   _moveSpeed: 10
   _turnSpeed: 150
   target: {fileID: 1934638454}
->>>>>>> Stashed changes
 --- !u!1001 &1852105410
 PrefabInstance:
   m_ObjectHideFlags: 0
