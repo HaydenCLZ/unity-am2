@@ -10,8 +10,6 @@ public class ClickMovement : MonoBehaviour
     [SerializeField] private Transform raycaster;
     [SerializeField] private float heightFromGround;
 
-
-    private bool _isGrounded;
     public float ForwardInput { get; set; }
     public float TurnInput { get; set; }
 
@@ -27,14 +25,10 @@ public class ClickMovement : MonoBehaviour
             float angle = TurnInput * _turnSpeed;
             transform.Rotate(0, angle, 0, Space.Self);  
         }
-        if (_isGrounded)
-        {
-            transform.position += (_moveSpeed * ForwardInput * Time.deltaTime * transform.forward);
-            float dist = GetDistanceToGround();
-            if (dist < heightFromGround || dist > heightFromGround)
-                transform.position += transform.up * (heightFromGround - dist);
-
-        }
+        transform.position += (_moveSpeed * ForwardInput * Time.deltaTime * transform.forward);
+        float dist = GetDistanceToGround();
+        if (dist < heightFromGround || dist > heightFromGround)
+            transform.position += transform.up * (heightFromGround - dist);
 
     }
 
@@ -51,16 +45,4 @@ public class ClickMovement : MonoBehaviour
 
         return distanceToGround;
     }
-
-    private void CheckGrounded()
-    {
-        _isGrounded = true;
-        RaycastHit hit;
-        if (Physics.Raycast(transform.GetChild(transform.childCount-1).position, -transform.up, out hit, Mathf.Infinity))
-        {
-            if (hit.distance <= 0.5f)
-               _isGrounded = true;
-        }
-    }
-
 }
