@@ -11,11 +11,14 @@ public class IASpider : MonoBehaviour
 {
     [SerializeField] private LayerMask _groundLayerMask;
     [SerializeField] private float _turnSpeed = 150;
-    [SerializeField] private Transform target;
+    private Transform target;
     [SerializeField] private Vector3 spawn;
 
     private Vector3 goTo;
     private float timer;
+    private float cdattack;
+    private bool attacked;
+
 
     private Ray _ray;
     private RaycastHit _hit;
@@ -30,17 +33,47 @@ public class IASpider : MonoBehaviour
 
     void Start()
     {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         goTo = spawn;
         timer = 0;
+        cdattack = 0;
     }
 
     void FixedUpdate()
     {
-        timer += Time.deltaTime;
-        if(Vector3.Distance(transform.position, target.position) < 20)
+        float dist = Vector3.Distance(transform.position, target.position);
+        timer += Time.fixedDeltaTime;
+        if (dist < 3)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, 0.05f);
-            transform.LookAt(target); 
+            cdattack += Time.fixedDeltaTime;
+            if (cdattack < 0.03)
+            {
+                transform.LookAt(target);
+                transform.position = Vector3.MoveTowards(transform.position, target.position, 0.4f);
+                if (attacked == false)
+                {
+                    attacked = true;
+                    SpiderHealth hp = target.GetComponent<SpiderHealth>();
+                    hp.TakeDamage(20);
+                }
+            }
+            else if (cdattack < 0.1 && cdattack > 0.07)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, target.position, -0.4f);
+                transform.LookAt(target);
+            }
+            else if (cdattack > 1.3)
+            {
+                attacked = false;
+                cdattack = 0;
+            }
+        }
+        else if (dist < 15)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, 0.06f);
+            transform.LookAt(target);
+            attacked = false;
+            cdattack = 0.3f;
         }
         else
         {
@@ -54,7 +87,7 @@ public class IASpider : MonoBehaviour
             {
                 if(timer>1.5)
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, goTo, 0.02f);
+                    transform.position = Vector3.MoveTowards(transform.position, goTo, 0.03f);
                     transform.LookAt(goTo);
                 }
             }

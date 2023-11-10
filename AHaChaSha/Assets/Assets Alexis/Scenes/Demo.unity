@@ -22577,6 +22577,8 @@ MonoBehaviour:
     m_Bits: 1
   _moveSpeed: 5
   _turnSpeed: 3
+  raycaster: {fileID: 0}
+  heightFromGround: 0
 --- !u!114 &1850076751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22592,9 +22594,9 @@ MonoBehaviour:
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  _moveSpeed: 10
   _turnSpeed: 150
   target: {fileID: 1934638454}
+  spawn: {x: -10, y: 0.55, z: 10}
 --- !u!1001 &1852105410
 PrefabInstance:
   m_ObjectHideFlags: 0
