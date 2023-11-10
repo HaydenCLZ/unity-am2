@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class SpiderHealth : MonoBehaviour
 {
-
     public int maxHealth = 100;
     public int currentHealth;
 
@@ -24,7 +23,7 @@ public class Player : MonoBehaviour
         {
             TakeDamage(20);
         }
-        if(currentHealth <=0)
+        if (currentHealth <= 0)
         {
             currentHealth = 0;
 
@@ -49,5 +48,5 @@ public class Player : MonoBehaviour
         }
 
         healthBar.SetHealth(currentHealth);
-    } 
+    }
 }
