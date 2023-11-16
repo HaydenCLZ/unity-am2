@@ -82,10 +82,18 @@ public class MouvementPerso : MonoBehaviour
     private void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
+        if(horizontalInput == 0 && verticalInput == 0)
+        {
+            rb.velocity = new Vector3(0f,0f,0f);
+        }
 
        // Limite la vitesse
-       if(flatVel.magnitude > moveSpeed)
+       if(Input.GetKey("left shift") && flatVel.magnitude > moveSpeed*1.5f)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed * 1.5f;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
+        else if (!Input.GetKey("left shift") && flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);

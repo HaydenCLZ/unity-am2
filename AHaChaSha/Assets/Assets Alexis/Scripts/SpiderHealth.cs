@@ -26,7 +26,6 @@ public class SpiderHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-
         }
     }
 
