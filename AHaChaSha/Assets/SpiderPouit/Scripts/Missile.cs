@@ -5,8 +5,6 @@ using UnityEngine;
 public class Missile : MonoBehaviour
 {
     [SerializeField] private GameObject missilePrefab;  // Le préfabriqué du missile
-    [SerializeField] private float speed = 5f;  // Vitesse du missile
-    [SerializeField] private float explosionTime = 3f;  // Temps avant l'explosion
     [SerializeField] private float cooldownTime = 5f;  // Temps de recharge
     [SerializeField] private Transform spellcaster;
 
@@ -25,15 +23,11 @@ public class Missile : MonoBehaviour
     void FireMissile()
     {
         // Crée et déplace le missile
-        GameObject missile = Instantiate(missilePrefab, spellcaster.position, transform.rotation);
-        missile.transform.Rotate(Vector3.right, 90f);
+        GameObject missile = Instantiate(missilePrefab, spellcaster.position, missilePrefab.transform.rotation);
+        //missile.transform.forward = missile.transform.up;
         missile.SetActive(true);
-        Rigidbody rb = missile.GetComponent<Rigidbody>();
-        rb.velocity = transform.forward * speed;
-
-        // Détruisez le missile après un certain temps
-        Destroy(missile, explosionTime);
     }
+
 
     IEnumerator Cooldown()
     {
