@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00408905, g: 0.00022373251, b: 0.000000057247366, a: 1}
+  m_IndirectSpecularColor: {r: 0.0040890463, g: 0.00022373236, b: 0.000000057247366, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1018,7 +1018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50825195}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2932457, y: -0.000000028492131, z: 0.000000008739404, w: 0.95603716}
+  m_LocalRotation: {x: 0.2932457, y: 0.000000028492131, z: -0.000000008739404, w: 0.95603716}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2119,7 +2119,7 @@ GameObject:
   - component: {fileID: 110708001}
   - component: {fileID: 110708000}
   m_Layer: 5
-  m_Name: Mana fill
+  m_Name: XP fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2157,7 +2157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.48290095, b: 0.8584906, a: 1}
+  m_Color: {r: 0.745283, g: 0.6459455, b: 0.10194911, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2546,7 +2546,7 @@ GameObject:
   - component: {fileID: 130447296}
   - component: {fileID: 130447295}
   m_Layer: 5
-  m_Name: Mana Canva
+  m_Name: XP Canva
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14484,7 +14484,7 @@ GameObject:
   - component: {fileID: 852929015}
   - component: {fileID: 852929016}
   m_Layer: 5
-  m_Name: ManaBar
+  m_Name: XPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28770,15 +28770,15 @@ RectTransform:
   m_GameObject: {fileID: 1704911441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.1125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 852929013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 6, y: 7}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 11.8, y: 2.1}
+  m_SizeDelta: {x: 61.599, y: 56.246}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1704911443
 MonoBehaviour:
@@ -28800,7 +28800,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ee702929bd38b2445a0bfa9cd9fc4e78, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a01e656b867044f0194f53368d32852c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -31550,7 +31550,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884130995}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.31575596, y: -0.000000016326107, z: 0.0000000054330163, w: 0.94884044}
+  m_LocalRotation: {x: 0.315756, y: 0.000000016326114, z: -0.0000000054330185, w: 0.94884044}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
