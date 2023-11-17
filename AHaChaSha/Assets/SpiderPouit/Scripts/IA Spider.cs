@@ -55,6 +55,8 @@ public class IASpider : MonoBehaviour
                     attacked = true;
                     SpiderHealth hp = target.GetComponent<SpiderHealth>();
                     hp.TakeDamage(20);
+                    XP xp = target.GetComponent<XP>();
+                    xp.addXP(1);
                 }
             }
             else if (cdattack < 0.1 && cdattack > 0.07)
