@@ -1018,7 +1018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50825195}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2932457, y: 0.000000028492131, z: -0.000000008739404, w: 0.95603716}
+  m_LocalRotation: {x: 0.29324567, y: 3.1237516e-16, z: 3.0727925e-16, w: 0.95603716}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14578,18 +14578,18 @@ MonoBehaviour:
   slider: {fileID: 852929015}
   gradient:
     serializedVersion: 2
-    key0: {r: 0, g: 0.49019608, b: 0, a: 1}
-    key1: {r: 0, g: 0.7058824, b: 0, a: 1}
-    key2: {r: 0, g: 1, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key0: {r: 0.86910236, g: 1, b: 0.3066038, a: 1}
+    key1: {r: 1, g: 0.76087874, b: 0.3160377, a: 1}
+    key2: {r: 1, g: 0.71682125, b: 0.2971698, a: 0}
+    key3: {r: 1, g: 0.63220686, b: 0.2980392, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 32768
-    ctime2: 65535
-    ctime3: 0
+    ctime1: 32575
+    ctime2: 33346
+    ctime3: 65535
     ctime4: 0
     ctime5: 0
     ctime6: 0
@@ -14604,7 +14604,7 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 3
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   fill: {fileID: 110708000}
 --- !u!4 &853232017 stripped
@@ -28755,7 +28755,7 @@ GameObject:
   - component: {fileID: 1704911444}
   - component: {fileID: 1704911443}
   m_Layer: 5
-  m_Name: Mana icon
+  m_Name: XP Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31550,7 +31550,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884130995}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.315756, y: 0.000000016326114, z: -0.0000000054330185, w: 0.94884044}
+  m_LocalRotation: {x: 0.31575596, y: -0.000000016326107, z: 0.0000000054330163, w: 0.94884044}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
