@@ -13,7 +13,7 @@ public class Missile : MonoBehaviour
     void Update()
     {
         // Vérifiez si le sort peut être tiré
-        if (Input.GetKeyDown(KeyCode.Space) && canFire)
+        if (Input.GetKeyDown(KeyCode.Q) && canFire)
         {
             FireMissile();
             StartCoroutine(Cooldown());
@@ -24,7 +24,7 @@ public class Missile : MonoBehaviour
     {
         // Crée et déplace le missile
         GameObject missile = Instantiate(missilePrefab, spellcaster.position, missilePrefab.transform.rotation);
-        //missile.transform.forward = missile.transform.up;
+        missile.transform.up = transform.forward;
         missile.SetActive(true);
     }
 

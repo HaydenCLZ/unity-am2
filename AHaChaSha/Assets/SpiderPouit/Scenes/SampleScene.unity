@@ -1513,7 +1513,7 @@ Transform:
   m_GameObject: {fileID: 898356485}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.5, y: 4.9, z: 33.9}
+  m_LocalPosition: {x: 31.5, y: 4.9, z: 34.05}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2138,9 +2138,11 @@ GameObject:
   - component: {fileID: 1380858712}
   - component: {fileID: 1380858722}
   - component: {fileID: 1380858723}
+  - component: {fileID: 1380858724}
+  - component: {fileID: 1380858725}
   m_Layer: 0
   m_Name: Robot-Quadruped
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2153,8 +2155,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380858710}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.6905836, z: -0, w: 0.7232526}
-  m_LocalPosition: {x: 36.568077, y: 0, z: 15.210545}
+  m_LocalRotation: {x: -0, y: 0.00043301264, z: -0, w: 0.99999994}
+  m_LocalPosition: {x: 30.7, y: 0, z: 13.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2163,7 +2165,7 @@ Transform:
   - {fileID: 635345311}
   - {fileID: 1891494162}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 87.353, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.05, z: 0}
 --- !u!114 &1380858712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2223,6 +2225,41 @@ MonoBehaviour:
   missilePrefab: {fileID: 1948300491120490}
   cooldownTime: 5
   spellcaster: {fileID: 1891494162}
+--- !u!114 &1380858724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380858710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9365aec76da1feb4ea6d566b357fe45a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100
+--- !u!65 &1380858725
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380858710}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.75, y: 2.4, z: 3.5}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1450835931
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,7 +2692,7 @@ Transform:
   m_GameObject: {fileID: 1891494161}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.01, z: 1.25}
+  m_LocalPosition: {x: -0, y: 1.01, z: 2.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2768,6 +2805,7 @@ GameObject:
   - component: {fileID: 33276066550063900}
   - component: {fileID: 33276066550063902}
   - component: {fileID: 33276066550063901}
+  - component: {fileID: 33276066550063903}
   m_Layer: 0
   m_Name: Rocket10_Pink
   m_TagString: Untagged
@@ -2882,6 +2920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fuseTime: 2
   speed: 10
+  explosionRadius: 10
 --- !u!198 &33276066550063901
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -7735,6 +7774,27 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!65 &33276066550063903
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948300491120490}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.8865035, y: 13.789659, z: 2.8865027}
+  m_Center: {x: -0.00000023841864, y: 0.6406879, z: -0.00000029802322}
 --- !u!4 &5759426516700072825 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3614924682672175002, guid: 5ec493e37fa4e3049b7987ff07a46e64, type: 3}

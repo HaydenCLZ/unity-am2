@@ -8,6 +8,7 @@ public class Explosion : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private float fuseTime;
     [SerializeField] private float speed = 5f;  // Vitesse du missile
+    [SerializeField] private float explosionRadius = 2f;
     ParticleSystem exp;
 
     private Rigidbody rb;
@@ -16,8 +17,8 @@ public class Explosion : MonoBehaviour
         exp = GetComponent<ParticleSystem>();
         exp.transform.position = transform.position;
         rb = transform.GetComponent<Rigidbody>();
-
-        //
+        rb.detectCollisions = true;
+        rb.velocity = transform.up * speed;
 
         Invoke("Explode", fuseTime);
         
@@ -28,11 +29,23 @@ public class Explosion : MonoBehaviour
 
     void Explode()
     {
-        if (!exp.isPlaying)
-            exp.Play();
-        gameObject.GetComponent<Renderer>().enabled = false;
-        Destroy(rb);
-        Invoke("DelayedDestroy", exp.main.duration);
+        if (gameObject.GetComponent<Collider>().enabled)
+        {
+            if (!exp.isPlaying)
+                exp.Play();
+            gameObject.GetComponent<Renderer>().enabled = false;
+            gameObject.GetComponent<Collider>().enabled = false;
+            Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+            foreach (Collider hit in colliders)
+            {
+                if (hit.gameObject.tag == "Enemy")
+                {
+                    Health H = hit.gameObject.GetComponent<Health>();
+                    H.TakeDamage(50);
+                }
+            }
+            Invoke("DelayedDestroy", exp.main.duration);
+        }
     }
 
     void DelayedDestroy()
@@ -40,14 +53,9 @@ public class Explosion : MonoBehaviour
         Destroy(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
-        if (rb != null)
-        {
-            rb.velocity = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z)) * speed;
-        }
-        //Vector3.MoveTowards(transform.position, Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z)), 0);
+        Explode();
     }
+
 }

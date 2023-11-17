@@ -81,25 +81,17 @@ public class TimeController : MonoBehaviour
     private void RotateSun()
     {
         float sunLightRotation;
+        TimeSpan sunsetToSunriseDuration = CalculateTimeDifference(sunsetTime, sunriseTime);
+        TimeSpan timeSinceSunset = CalculateTimeDifference(sunsetTime, currentTime.TimeOfDay);
 
-        if (currentTime.TimeOfDay < sunriseTime &&  currentTime.TimeOfDay < sunsetTime) 
+        double percentage = timeSinceSunset.TotalMinutes / sunsetToSunriseDuration.TotalMinutes;
+        if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime) 
         {
-            TimeSpan sunriseToSunsetDuration = CalculateTimeDifference(sunriseTime, sunsetTime);
-            TimeSpan timeSinceSunrise = CalculateTimeDifference(sunriseTime, currentTime.TimeOfDay);
-
-            double percentage = timeSinceSunrise.TotalMinutes / sunriseToSunsetDuration.TotalMinutes;
-
-            sunLightRotation = Mathf.Lerp (0, 180, (float)percentage);
+            sunLightRotation = Mathf.Lerp (0, 360, (float)percentage);
         }
         else
         {
-            TimeSpan sunsetToSunriseDuration = CalculateTimeDifference(sunsetTime, sunriseTime);
-            TimeSpan timeSinceSunset = CalculateTimeDifference(sunsetTime, currentTime.TimeOfDay);
-
-            double percentage = timeSinceSunset.TotalMinutes / sunsetToSunriseDuration.TotalMinutes;
-
             sunLightRotation = Mathf.Lerp(180, 360, (float)percentage);
-
         }
 
         sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);

@@ -13,23 +13,13 @@ public class IASpider : MonoBehaviour
     [SerializeField] private float _turnSpeed = 150;
     private Transform target;
     [SerializeField] private Vector3 spawn;
+    [SerializeField] private float heightFromGround;
+    [SerializeField] private Transform raycaster;
 
     private Vector3 goTo;
     private float timer;
     private float cdattack;
     private bool attacked;
-
-
-    private Ray _ray;
-    private RaycastHit _hit;
-
-    private Vector3 _targetPosition;
-    private Quaternion _targetRot;
-    private float rotationSmoothness;
-    private Rigidbody rb;
-
-    private BoxCollider boxCollider;
-
 
     void Start()
     {
@@ -43,6 +33,7 @@ public class IASpider : MonoBehaviour
     {
         float dist = Vector3.Distance(transform.position, target.position);
         timer += Time.fixedDeltaTime;
+        StartCoroutine(lookAt());
         if (dist < 3)
         {
             cdattack += Time.fixedDeltaTime;
@@ -62,7 +53,6 @@ public class IASpider : MonoBehaviour
             else if (cdattack < 0.1 && cdattack > 0.07)
             {
                 transform.position = Vector3.MoveTowards(transform.position, target.position, -0.4f);
-                transform.LookAt(target);
             }
             else if (cdattack > 1.3)
             {
@@ -94,13 +84,39 @@ public class IASpider : MonoBehaviour
                 }
             }
         }
+        float distToG = GetDistanceToGround();
+        if (distToG < heightFromGround || distToG > heightFromGround)
+            transform.position += transform.up * (heightFromGround - dist);
     }
-    private float distToGround()
+
+
+    public float GetDistanceToGround()
     {
-        RaycastHit hitG;
-        if (Physics.Raycast(transform.position, -transform.up, out hitG, Mathf.Infinity))
-            return Vector3.Distance(transform.TransformPoint(boxCollider.center), hitG.point) - boxCollider.size.y / 2;
-        return Mathf.Infinity;
+        RaycastHit hit;
+        float distanceToGround = 0f;
+
+        // Créer un rayon vers le bas depuis la position actuelle de l'objet
+        if (Physics.Raycast(raycaster.position, -transform.up, out hit))
+        {
+            distanceToGround = hit.distance;
+        }
+
+        return distanceToGround;
+    }
+
+    private IEnumerator lookAt()
+    {
+        Quaternion LookRotation = Quaternion.LookRotation(target.position - transform.position);
+        float time = 0;
+
+        while (time < 1)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, LookRotation, time);
+
+            time += Time.deltaTime * _turnSpeed;
+
+            yield return null;
+        }
     }
 
 }
