@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public class HealingItem : MonoBehaviour
 {
     public int bonusHealth = 20; 
-    private Player player;
+    private SpiderHealth player;
 
     void Start()
     {
         // find the Player script in the scene
-        player = FindObjectOfType<Player>();
+        player = FindObjectOfType<SpiderHealth>();
         if (player == null)
         {
             Debug.LogError("no player :("); //debugging
