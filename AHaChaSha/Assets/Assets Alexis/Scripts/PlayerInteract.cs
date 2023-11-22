@@ -1,29 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        
-    }
+            if (hit.gameObject.CompareTag("NPC"))
 
-    // Update is called once per frame
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E)) 
-        {
-            float interactRange = 2f;
-            Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
-            foreach(Collider collider in colliderArray)
             {
-                if(collider.TryGetComponent(out Unitychan unitychan))
-                {
-                    unitychan.Interact();
-                }
+                Debug.Log("Joakim's cool");
             }
         }
-    }
 }
