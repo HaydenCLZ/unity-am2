@@ -25,7 +25,6 @@ public class Health : MonoBehaviour
         {
             currentHealth = 0;
         }
-        Debug.Log(currentHealth);
     }
 
     public void TakeDamage(int damage)
