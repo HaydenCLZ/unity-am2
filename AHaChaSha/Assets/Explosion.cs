@@ -21,8 +21,6 @@ public class Explosion : MonoBehaviour
         rb.velocity = transform.up * speed;
 
         Invoke("Explode", fuseTime);
-        
-
     }
 
 

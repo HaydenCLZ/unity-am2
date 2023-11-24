@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
-    [SerializeField] private GameObject missilePrefab;  // Le préfabriqué du missile
-    [SerializeField] private float cooldownTime = 5f;  // Temps de recharge
-    [SerializeField] private Transform spellcaster;
+    [SerializeField] private GameObject projectilePrefab;  // Le préfabriqué du missile
+    [SerializeField] private float cooldownTime;  // Temps de recharge
+    [SerializeField] private Transform caster;
 
     private bool canFire = true;
 
@@ -15,17 +15,17 @@ public class Missile : MonoBehaviour
         // Vérifiez si le sort peut être tiré
         if (Input.GetKeyDown(KeyCode.Q) && canFire)
         {
-            FireMissile();
+            Fire();
             StartCoroutine(Cooldown());
         }
     }
 
-    void FireMissile()
+    void Fire()
     {
         // Crée et déplace le missile
-        GameObject missile = Instantiate(missilePrefab, spellcaster.position, missilePrefab.transform.rotation);
-        missile.transform.up = transform.forward;
-        missile.SetActive(true);
+        GameObject projectile = Instantiate(projectilePrefab, caster.position, projectilePrefab.transform.rotation);
+        projectile.transform.up = transform.forward;
+        projectile.SetActive(true);
     }
 
 
