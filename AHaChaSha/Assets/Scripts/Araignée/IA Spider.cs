@@ -38,7 +38,7 @@ public class IASpider : MonoBehaviour
                 if (attacked == false)
                 {
                     attacked = true;
-                    target.GetComponent<SpiderHealth>().TakeDamage(20);//met des degats au joueur
+                    target.GetComponent<Main_Character_Health>().TakeDamage(20);//met des degats au joueur
                     GetComponent<Spider_Health>().TakeDamage(50);//met des degats à l'arraignée
                 }
             }
