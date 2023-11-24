@@ -11,10 +11,9 @@ public class IASpider : MonoBehaviour
 {
     [SerializeField] private LayerMask _groundLayerMask;
     [SerializeField] private float _turnSpeed = 150;
-    private Transform target;
-    [SerializeField] private Vector3 spawn;
+    public Transform target;
+    [SerializeField] public Vector3 spawn;
     [SerializeField] private float heightFromGround;
-    [SerializeField] private Transform raycaster;
 
     private Vector3 goTo;
     private float timer;
@@ -39,15 +38,13 @@ public class IASpider : MonoBehaviour
             cdattack += Time.fixedDeltaTime;
             if (cdattack < 0.03)
             {
-                transform.LookAt(target);
+                 transform.LookAt(target);
                 transform.position = Vector3.MoveTowards(transform.position, target.position, 0.4f);
                 if (attacked == false)
                 {
                     attacked = true;
-                    SpiderHealth hp = target.GetComponent<SpiderHealth>();
-                    hp.TakeDamage(20);
-                    XP xp = target.GetComponent<XP>();
-                    xp.addXP(1);
+                    target.GetComponent<SpiderHealth>().TakeDamage(20);//met des degats au joueur
+                    GetComponent<Spider_Health>().TakeDamage(50);//met des degats à l'arraignée
                 }
             }
             else if (cdattack < 0.1 && cdattack > 0.07)
@@ -69,39 +66,21 @@ public class IASpider : MonoBehaviour
         }
         else
         {
-            if(Vector3.Distance(transform.position, goTo) < 0.2)
+            if (Vector3.Distance(transform.position, goTo) < 0.2)
             {
                 System.Random rand = new System.Random();
-                goTo = spawn + new Vector3(2f*(float)rand.NextDouble()-1f,0f,2f*(float)rand.NextDouble()-1f);
+                goTo = spawn + new Vector3(2f * (float)rand.NextDouble() - 1f, 0f, 2f * (float)rand.NextDouble() - 1f);
                 timer = 0;
             }
             else
             {
-                if(timer>1.5)
+                if (timer > 1.5)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, goTo, 0.03f);
                     transform.LookAt(goTo);
                 }
             }
         }
-        float distToG = GetDistanceToGround();
-        if (distToG < heightFromGround || distToG > heightFromGround)
-            transform.position += transform.up * (heightFromGround - dist);
-    }
-
-
-    public float GetDistanceToGround()
-    {
-        RaycastHit hit;
-        float distanceToGround = 0f;
-
-        // Créer un rayon vers le bas depuis la position actuelle de l'objet
-        if (Physics.Raycast(raycaster.position, -transform.up, out hit))
-        {
-            distanceToGround = hit.distance;
-        }
-
-        return distanceToGround;
     }
 
     private IEnumerator lookAt()
@@ -118,5 +97,4 @@ public class IASpider : MonoBehaviour
             yield return null;
         }
     }
-
 }

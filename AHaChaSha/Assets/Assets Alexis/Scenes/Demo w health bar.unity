@@ -9296,9 +9296,9 @@ GameObject:
   - component: {fileID: 525755824}
   - component: {fileID: 525755823}
   - component: {fileID: 525755822}
-  - component: {fileID: 525755821}
+  - component: {fileID: 525755825}
   m_Layer: 0
-  m_Name: Spider 2 (2)
+  m_Name: Spider 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9322,7 +9322,7 @@ Transform:
   - {fileID: 1935203348}
   m_Father: {fileID: 1400520681}
   m_LocalEulerAnglesHint: {x: 0, y: 1.346, z: 0}
---- !u!114 &525755821
+--- !u!114 &525755822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9331,21 +9331,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 525755819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1924032f912674408386ece7c52854e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
-  healthBar: {fileID: 531978711}
---- !u!114 &525755822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525755819}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb5a955b7ce50414aa45b5d21011935f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -9353,9 +9338,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   _turnSpeed: 150
-  spawn: {x: -157, y: 1, z: -51}
+  target: {fileID: 1876454303}
+  spawn: {x: -157, y: 1.24, z: -51}
   heightFromGround: 0
-  raycaster: {fileID: 0}
 --- !u!114 &525755823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9400,6 +9385,23 @@ MonoBehaviour:
   _turnSpeed: 3
   raycaster: {fileID: 0}
   heightFromGround: 0
+--- !u!114 &525755825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525755819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bbe38a57e8db7a449d7f408e96e2a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 3
+  maxHealth: 300
+  currentHealth: 300
+  alive: 1
+  timer_respawn: 10
 --- !u!1001 &525819027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15031,9 +15033,9 @@ GameObject:
   - component: {fileID: 866700253}
   - component: {fileID: 866700252}
   - component: {fileID: 866700251}
-  - component: {fileID: 866700250}
+  - component: {fileID: 866700254}
   m_Layer: 0
-  m_Name: Spider 2 (1)
+  m_Name: Spider 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15057,7 +15059,7 @@ Transform:
   - {fileID: 247510997}
   m_Father: {fileID: 1400520681}
   m_LocalEulerAnglesHint: {x: 0, y: 21.816, z: 0}
---- !u!114 &866700250
+--- !u!114 &866700251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15066,21 +15068,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 866700248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1924032f912674408386ece7c52854e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
-  healthBar: {fileID: 531978711}
---- !u!114 &866700251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866700248}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb5a955b7ce50414aa45b5d21011935f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -15088,9 +15075,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   _turnSpeed: 150
+  target: {fileID: 1876454303}
   spawn: {x: -169, y: 0.82, z: -45}
   heightFromGround: 0
-  raycaster: {fileID: 0}
 --- !u!114 &866700252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15135,6 +15122,23 @@ MonoBehaviour:
   _turnSpeed: 3
   raycaster: {fileID: 0}
   heightFromGround: 0
+--- !u!114 &866700254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866700248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bbe38a57e8db7a449d7f408e96e2a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 3
+  maxHealth: 300
+  currentHealth: 300
+  alive: 1
+  timer_respawn: 10
 --- !u!1 &875515298
 GameObject:
   m_ObjectHideFlags: 0
@@ -19399,9 +19403,9 @@ GameObject:
   - component: {fileID: 1087402154}
   - component: {fileID: 1087402153}
   - component: {fileID: 1087402152}
-  - component: {fileID: 1087402151}
+  - component: {fileID: 1087402155}
   m_Layer: 0
-  m_Name: Spider 2 (4)
+  m_Name: Spider 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19425,7 +19429,7 @@ Transform:
   - {fileID: 1921952590}
   m_Father: {fileID: 1400520681}
   m_LocalEulerAnglesHint: {x: 0, y: 1.346, z: 0}
---- !u!114 &1087402151
+--- !u!114 &1087402152
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19434,21 +19438,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1087402149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1924032f912674408386ece7c52854e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
-  healthBar: {fileID: 531978711}
---- !u!114 &1087402152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087402149}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb5a955b7ce50414aa45b5d21011935f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -19456,9 +19445,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   _turnSpeed: 150
-  spawn: {x: -157, y: 1, z: -51}
+  target: {fileID: 1876454303}
+  spawn: {x: -138, y: 1.1, z: -3}
   heightFromGround: 0
-  raycaster: {fileID: 0}
 --- !u!114 &1087402153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19503,6 +19492,23 @@ MonoBehaviour:
   _turnSpeed: 3
   raycaster: {fileID: 0}
   heightFromGround: 0
+--- !u!114 &1087402155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087402149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bbe38a57e8db7a449d7f408e96e2a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 2
+  maxHealth: 200
+  currentHealth: 200
+  alive: 1
+  timer_respawn: 10
 --- !u!1001 &1088696983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23403,9 +23409,9 @@ GameObject:
   - component: {fileID: 1384808384}
   - component: {fileID: 1384808383}
   - component: {fileID: 1384808382}
-  - component: {fileID: 1384808381}
+  - component: {fileID: 1384808385}
   m_Layer: 0
-  m_Name: Spider 2 (3)
+  m_Name: Spider 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23429,7 +23435,7 @@ Transform:
   - {fileID: 150232372}
   m_Father: {fileID: 1400520681}
   m_LocalEulerAnglesHint: {x: 0, y: 1.346, z: 0}
---- !u!114 &1384808381
+--- !u!114 &1384808382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23438,21 +23444,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1384808379}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1924032f912674408386ece7c52854e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
-  healthBar: {fileID: 531978711}
---- !u!114 &1384808382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1384808379}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb5a955b7ce50414aa45b5d21011935f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -23460,9 +23451,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   _turnSpeed: 150
-  spawn: {x: -157, y: 1, z: -51}
+  target: {fileID: 1876454303}
+  spawn: {x: -129, y: 1.1, z: 3}
   heightFromGround: 0
-  raycaster: {fileID: 0}
 --- !u!114 &1384808383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23507,6 +23498,23 @@ MonoBehaviour:
   _turnSpeed: 3
   raycaster: {fileID: 0}
   heightFromGround: 0
+--- !u!114 &1384808385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384808379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bbe38a57e8db7a449d7f408e96e2a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 2
+  maxHealth: 200
+  currentHealth: 200
+  alive: 1
+  timer_respawn: 10
 --- !u!4 &1385537237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9069115365609054727, guid: 60f79905accf3b24fa0114b941f1aac0, type: 3}
@@ -26879,7 +26887,7 @@ GameObject:
   - component: {fileID: 1581579287}
   - component: {fileID: 1581579286}
   - component: {fileID: 1581579285}
-  - component: {fileID: 1581579284}
+  - component: {fileID: 1581579288}
   m_Layer: 0
   m_Name: Spider 2
   m_TagString: Untagged
@@ -26905,7 +26913,7 @@ Transform:
   - {fileID: 631611129}
   m_Father: {fileID: 1400520681}
   m_LocalEulerAnglesHint: {x: 0, y: 11.432, z: 0}
---- !u!114 &1581579284
+--- !u!114 &1581579285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26914,21 +26922,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1581579282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1924032f912674408386ece7c52854e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
-  healthBar: {fileID: 531978711}
---- !u!114 &1581579285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1581579282}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb5a955b7ce50414aa45b5d21011935f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -26936,9 +26929,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   _turnSpeed: 150
-  spawn: {x: -161, y: 1, z: -43}
+  target: {fileID: 1876454303}
+  spawn: {x: -161, y: 1.2, z: -43}
   heightFromGround: 0
-  raycaster: {fileID: 0}
 --- !u!114 &1581579286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26983,6 +26976,23 @@ MonoBehaviour:
   _turnSpeed: 3
   raycaster: {fileID: 0}
   heightFromGround: 0
+--- !u!114 &1581579288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581579282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bbe38a57e8db7a449d7f408e96e2a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 3
+  maxHealth: 300
+  currentHealth: 300
+  alive: 1
+  timer_respawn: 10
 --- !u!1 &1584256792
 GameObject:
   m_ObjectHideFlags: 0
@@ -30993,7 +31003,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850076747}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb5a955b7ce50414aa45b5d21011935f, type: 3}
   m_Name: 
@@ -31002,9 +31012,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   _turnSpeed: 150
+  target: {fileID: 1876454303}
   spawn: {x: -10, y: 0.5, z: 10}
   heightFromGround: 0
-  raycaster: {fileID: 0}
 --- !u!114 &1850076752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31014,12 +31024,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1850076747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1924032f912674408386ece7c52854e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bbe38a57e8db7a449d7f408e96e2a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 1
   maxHealth: 100
   currentHealth: 100
-  healthBar: {fileID: 531978711}
+  alive: 1
+  timer_respawn: 5
 --- !u!1001 &1852105410
 PrefabInstance:
   m_ObjectHideFlags: 0
