@@ -111,6 +111,7 @@ public class PersoMouvement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         gravity();
         rotation();
 
