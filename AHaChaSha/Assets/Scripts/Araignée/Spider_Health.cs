@@ -42,5 +42,6 @@ public class Spider_Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log("Spider took " + damage + " damage");
     }
 }

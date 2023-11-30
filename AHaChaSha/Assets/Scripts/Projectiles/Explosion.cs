@@ -39,8 +39,8 @@ public class Explosion : MonoBehaviour
             {
                 if (hit.gameObject.tag == "Enemy")
                 {
-                    Health H = hit.gameObject.GetComponent<Health>();
-                    H.TakeDamage(50);
+                    Spider_Health H = hit.gameObject.GetComponent<Spider_Health>();
+                    H.TakeDamage(100);
                 }
             }
             Invoke("DelayedDestroy", exp.main.duration);
@@ -52,7 +52,7 @@ public class Explosion : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         Explode();
     }

@@ -66,7 +66,7 @@ public class PersoMouvement : MonoBehaviour
         Quaternion currentRotation = transform.rotation;
 
 
-        if (isMoving) //Crée la rotation à partir de la direction dans laquelle va le perso
+        if (isMoving && directionToLookAt != Vector3.zero) //Crée la rotation à partir de la direction dans laquelle va le perso
         {
             Quaternion rotation = Quaternion.LookRotation(directionToLookAt);
             transform.rotation = Quaternion.Slerp(currentRotation.normalized, rotation.normalized, Time.deltaTime * rotationSpeed);
