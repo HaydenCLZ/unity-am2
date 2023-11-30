@@ -1,10 +1,9 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class HealingItem : MonoBehaviour
 {
-    public int bonusHealth = 20; 
+    // Start is called before the first frame update
+    public int bonusHealth = 20;
     private Main_Character_Health player;
 
     void Start()
