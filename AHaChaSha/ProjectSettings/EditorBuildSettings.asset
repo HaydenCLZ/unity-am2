@@ -11,4 +11,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Assets Alexis/Scenes/Demo w health bar.unity
     guid: cc58671f884371e459b1214551033fad
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 5af2934b9a1c0e14f8006b520a9c6264, type: 2}
