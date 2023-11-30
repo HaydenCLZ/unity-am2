@@ -13,6 +13,7 @@ public class Tirer : MonoBehaviour
 
     void Update()
     {
+        armeTransform.forward = Camera.main.transform.forward;
 
         // Gestion du tir
         if (Input.GetMouseButton(0) && Time.time > tempsDernierTir + cadence)
@@ -24,12 +25,11 @@ public class Tirer : MonoBehaviour
 
     void Shoot()
     {
-        Vector3 positionCurseur = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         // Instanciation du projectile depuis l'arme
         GameObject balle = Instantiate(projectilePrefab, armeTransform.position, armeTransform.rotation);
         balle.transform.Rotate(0f, 180f, 0f);
         balle.transform.up = balle.transform.forward;
-        balle.GetComponent<Rigidbody>().velocity = positionCurseur.normalized * 50;  
+        balle.transform.up = Camera.main.transform.forward;
         balle.SetActive(true);
         // Ajoutez ici la logique de gestion du tir (son, effet, etc.)
     }

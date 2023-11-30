@@ -70,17 +70,6 @@ public partial class @PersoInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
-                    ""id"": ""16af072a-44c0-42ad-9ef4-1e3b68117532"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""left"",
                     ""id"": ""feef7bff-a83f-4dc4-95ad-1c83faae041d"",
                     ""path"": ""<Keyboard>/d"",
