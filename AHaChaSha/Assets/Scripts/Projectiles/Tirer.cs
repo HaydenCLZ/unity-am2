@@ -13,7 +13,7 @@ public class Tirer : MonoBehaviour
 
     void Update()
     {
-        armeTransform.forward = Camera.main.transform.forward;
+        armeTransform.forward = -Camera.main.transform.forward;
 
         // Gestion du tir
         if (Input.GetMouseButton(0) && Time.time > tempsDernierTir + cadence)

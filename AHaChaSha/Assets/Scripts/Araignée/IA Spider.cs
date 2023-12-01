@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -6,9 +7,10 @@ public class IASpider : MonoBehaviour
 {
     [SerializeField] private LayerMask _groundLayerMask;
     [SerializeField] private float _turnSpeed = 150;
-    public Transform target;
+    [System.NonSerialized] public Transform target;
     [SerializeField] public Vector3 spawn;
     [SerializeField] private float heightFromGround;
+    [SerializeField] private Transform raycaster;
 
     private Vector3 goTo;
     private float timer;
@@ -55,7 +57,9 @@ public class IASpider : MonoBehaviour
         else if (dist < 15)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, 0.06f);
-            transform.LookAt(target);
+            Vector3 lookAtPosition = target.position;
+            lookAtPosition.y = transform.position.y;
+            transform.LookAt(lookAtPosition);
             attacked = false;
             cdattack = 0.3f;
         }
@@ -72,10 +76,35 @@ public class IASpider : MonoBehaviour
                 if (timer > 1.5)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, goTo, 0.03f);
-                    transform.LookAt(goTo);
+                    Vector3 lookAtPosition = goTo;
+                    lookAtPosition.y = transform.position.y;
+                    transform.LookAt(lookAtPosition);
                 }
             }
         }
+        reajustHeight();
+
+    }
+
+    public void reajustHeight()
+    {
+        float distToGround = GetDistanceToGround();
+        if (distToGround < heightFromGround || distToGround > heightFromGround)
+            transform.position += transform.up * (heightFromGround - distToGround);
+    }
+
+    public float GetDistanceToGround()
+    {
+        RaycastHit hit;
+        float distanceToGround = 0f;
+
+        // Créer un rayon vers le bas depuis la position actuelle de l'objet
+        if (Physics.Raycast(raycaster.position, -transform.up, out hit))
+        {
+            distanceToGround = hit.distance;
+        }
+
+        return distanceToGround;
     }
 
     private IEnumerator lookAt()
