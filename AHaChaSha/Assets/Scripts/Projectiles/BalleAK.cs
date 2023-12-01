@@ -14,7 +14,7 @@ public class BalleAK : MonoBehaviour
         rb.velocity = transform.up * vitesseBalle;
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Destroy(gameObject, 2f);
     }

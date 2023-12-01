@@ -69,7 +69,7 @@ public class PersoMouvement : MonoBehaviour
         if (isMoving && directionToLookAt != Vector3.zero) //Crée la rotation à partir de la direction dans laquelle va le perso
         {
             Quaternion rotation = Quaternion.LookRotation(directionToLookAt);
-            transform.rotation = Quaternion.Slerp(currentRotation.normalized, rotation.normalized, Time.deltaTime * rotationSpeed);
+            transform.rotation = Quaternion.Slerp(currentRotation.normalized, rotation.normalized, Time.fixedDeltaTime * rotationSpeed);
         }
     }
 
@@ -109,7 +109,7 @@ public class PersoMouvement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Cursor.lockState = CursorLockMode.Locked;
         gravity();
@@ -118,10 +118,10 @@ public class PersoMouvement : MonoBehaviour
         cameraMovement = ConvertToCamera(movement);
         if (isRunning)
         {
-            characterController.Move(cameraMovement * Time.deltaTime * movingSpeed * runningSpeed);
+            characterController.Move(cameraMovement * Time.fixedDeltaTime * movingSpeed * runningSpeed);
         } else
         {
-            characterController.Move(cameraMovement * Time.deltaTime * movingSpeed);
+            characterController.Move(cameraMovement * Time.fixedDeltaTime * movingSpeed);
         }
     }
 
