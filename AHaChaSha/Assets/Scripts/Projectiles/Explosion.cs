@@ -57,4 +57,9 @@ public class Explosion : MonoBehaviour
         Explode();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Explode();
+    }
+
 }

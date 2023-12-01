@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
-    Light Spotlight;
+    [SerializeField] public Light light;
 
     void Start()
     {
 
-        Spotlight = GetComponent<Light>();
+        light = GetComponent<Light>();
     }
 
 
@@ -17,7 +17,7 @@ public class Flashlight : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.F))
         {
-            Spotlight.enabled = !Spotlight.enabled;
+            light.enabled = !light.enabled;
         }
     }
 

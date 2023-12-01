@@ -27,23 +27,28 @@ public class AnimationPerso : MonoBehaviour
         //Bool court
         bool court = animator.GetBool("court");
 
+        //Bool tire 
+        bool tire = animator.GetBool("tire");
+
         //Stock un bool d'appuie de touche
         bool forwardPress = Input.GetKey("w");
         bool leftPress = Input.GetKey("a");
         bool rightPress = Input.GetKey("d");
-        bool backwardPress = Input.GetKey("s");
+        //bool backwardPress = Input.GetKey("s");
 
         bool runPress = Input.GetKey("left shift");
 
+        bool firepress = Input.GetKey("o");
+
         //Vérifie qu'au moins une touche est appuyée 
-        if (!marche && (forwardPress || leftPress || rightPress || backwardPress))
+        if (!marche && (forwardPress || leftPress || rightPress /*|| backwardPress */))
         {
             animator.SetBool("marche", true);
            
         }
 
         //Vérifie qu'aucune touche n'est appuyée
-        if (marche && !forwardPress && !leftPress && !rightPress && !backwardPress)
+        if (marche && !forwardPress && !leftPress && !rightPress /*&& !backwardPress */)
         {
             animator.SetBool("marche", false);
         }
@@ -58,6 +63,19 @@ public class AnimationPerso : MonoBehaviour
         {
             animator.SetBool("court", false);
         }
+
+        //Vérifie si le perso tire.
+
+        if (!tire && marche && firepress)
+        {
+            animator.SetBool("tire", true);
+        }
+
+        if (tire && !marche  && !firepress)
+        {
+            animator.SetBool("tire", false);
+        }
+
 
     }
 }

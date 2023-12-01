@@ -14,8 +14,23 @@ public class BalleAK : MonoBehaviour
         rb.velocity = transform.up * vitesseBalle;
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Destroy(gameObject, 2f);
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "Enemy")
+        {
+            collider.gameObject.GetComponent<Spider_Health>().TakeDamage(5);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.tag != "Player")
+            Destroy(gameObject);
     }
 }
