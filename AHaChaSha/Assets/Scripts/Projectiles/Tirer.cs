@@ -9,7 +9,7 @@ public class Tirer : MonoBehaviour
     public GameObject projectilePrefab;
     public float cadence = 0.1f;
     private float tempsDernierTir;
-
+    private Ray rayshot;
 
     void Update()
     {
@@ -29,7 +29,15 @@ public class Tirer : MonoBehaviour
         GameObject balle = Instantiate(projectilePrefab, armeTransform.position, armeTransform.rotation);
         balle.transform.Rotate(0f, 180f, 0f);
         balle.transform.up = balle.transform.forward;
-        balle.transform.up = Camera.main.transform.forward;
+        rayshot = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(rayshot, out RaycastHit hit))
+        {
+            balle.transform.up = hit.point - balle.transform.position;
+        }
+        else
+        {
+            balle.transform.up = rayshot.direction;
+        }
         balle.SetActive(true);
         // Ajoutez ici la logique de gestion du tir (son, effet, etc.)
     }
