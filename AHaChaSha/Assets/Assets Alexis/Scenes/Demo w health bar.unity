@@ -1018,7 +1018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50825195}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.03401787, y: -0.0000000037231342, z: -1.2672643e-10, w: 0.99942124}
+  m_LocalRotation: {x: -0.034017865, y: -2.2178758e-16, z: -1.22918e-18, w: 0.99942124}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13782,7 +13782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510961997}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.057520837, y: -0.000000017177896, z: -9.897256e-10, w: 0.9983443}
+  m_LocalRotation: {x: -0.057520837, y: -0.000000017177893, z: -9.897254e-10, w: 0.9983443}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16934,9 +16934,9 @@ MonoBehaviour:
   m_YAxis:
     Value: 0.5
     m_SpeedMode: 0
-    m_MaxSpeed: 2
-    m_AccelTime: 0.5
-    m_DecelTime: 0.1
+    m_MaxSpeed: 3
+    m_AccelTime: 0
+    m_DecelTime: 0
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 1
@@ -16958,9 +16958,9 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 180
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
+    m_MaxSpeed: 400
+    m_AccelTime: 0
+    m_DecelTime: 0
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
     m_InvertInput: 0
@@ -27766,7 +27766,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203374081}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.034017876, y: -0.000000003723135, z: -1.2672648e-10, w: 0.9994213}
+  m_LocalRotation: {x: -0.03401787, y: -0.000000003723135, z: -1.2672645e-10, w: 0.9994213}
   m_LocalPosition: {x: 0.6000061, y: 2.198, z: -8.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -38250,7 +38250,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1850076748}
-  - component: {fileID: 1850076750}
   - component: {fileID: 1850076749}
   - component: {fileID: 1850076751}
   - component: {fileID: 1850076752}
@@ -38305,25 +38304,6 @@ MonoBehaviour:
   bodyOrientation: 1
   raycastRange: 2
   raycaster: {fileID: 286622342}
---- !u!114 &1850076750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850076747}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc99f72b448c647819edff00d5982887, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _moveSpeed: 5
-  _turnSpeed: 3
-  raycaster: {fileID: 0}
-  heightFromGround: 0
 --- !u!114 &1850076751
 MonoBehaviour:
   m_ObjectHideFlags: 0
