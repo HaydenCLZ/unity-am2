@@ -85,7 +85,8 @@ public class ProceduralAnimation : MonoBehaviour
 
     void FixedUpdate()
     {
-        controllerInput = input.ForwardInput;
+        if (input != null)
+            controllerInput = input.ForwardInput;
         velocity = transform.position - lastBodyPos;
         velocity = (velocity + smoothness * lastVelocity) / (smoothness + 1f);
 
