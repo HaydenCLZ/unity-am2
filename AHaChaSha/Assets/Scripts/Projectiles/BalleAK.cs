@@ -30,7 +30,7 @@ public class BalleAK : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.tag != "Player")
+        if (!collision.collider.gameObject.CompareTag("Player") || !collision.collider.gameObject.CompareTag("NPC"))
             Destroy(gameObject);
     }
 }

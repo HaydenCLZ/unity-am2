@@ -1008,7 +1008,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50825195}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.1396865, y: 0.010977423, z: 0.0015486772, w: 0.99013376}
+  m_LocalRotation: {x: -0.1396865, y: 0.010977421, z: 0.001548677, w: 0.99013376}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13789,7 +13789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510961997}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.16294172, y: 0.010937967, z: 0.0018065065, w: 0.98657346}
+  m_LocalRotation: {x: -0.16294171, y: 0.010937929, z: 0.0018064998, w: 0.98657346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16199,7 +16199,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -4}
+  m_AnchoredPosition: {x: 0, y: -170.8}
   m_SizeDelta: {x: 88.7, y: 73.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &649034393
@@ -16891,7 +16891,7 @@ Transform:
   m_GameObject: {fileID: 700803397}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6000061, y: 2.198, z: -8.17}
+  m_LocalPosition: {x: 0.6000061, y: 2.198, z: -11.878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18233,12 +18233,12 @@ GameObject:
   - component: {fileID: 779016263}
   - component: {fileID: 779016262}
   m_Layer: 5
-  m_Name: Image
+  m_Name: E-Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &779016261
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27562,8 +27562,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203374081}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.13968652, y: 0.01097744, z: 0.0015486798, w: 0.99013376}
-  m_LocalPosition: {x: 0.6000061, y: 2.198, z: -8.17}
+  m_LocalRotation: {x: -0.13968652, y: 0.010977424, z: 0.0015486776, w: 0.99013376}
+  m_LocalPosition: {x: 0.6000061, y: 2.198, z: -11.878}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29208,8 +29208,11 @@ MonoBehaviour:
   dialogue:
     name: Unity-Chan
     sentences:
-    - Hey
-    - 'Help me kill all those spiders invading the forest uwu please '
+    - 'Hey
+
+      (Press space to continue.)'
+    - 'Help me kill all those scawy spiders invading the forest uwu pwease '
+  buttonToToggle: {fileID: 779016260}
 --- !u!1 &1324217859
 GameObject:
   m_ObjectHideFlags: 0
@@ -32470,6 +32473,7 @@ MonoBehaviour:
     sentences:
     - Hey
     - 'Help me kill all those spiders invading the forest uwu please '
+  buttonToToggle: {fileID: 0}
 --- !u!1001 &1510511784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32942,7 +32946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1530221894
 RectTransform:
   m_ObjectHideFlags: 0
@@ -38710,9 +38714,9 @@ GameObject:
   - component: {fileID: 1876454309}
   - component: {fileID: 1876454310}
   - component: {fileID: 1876454311}
-  - component: {fileID: 1876454312}
   - component: {fileID: 1876454313}
   - component: {fileID: 1876454314}
+  - component: {fileID: 1876454315}
   m_Layer: 0
   m_Name: PersoPrincipal
   m_TagString: Player
@@ -38729,7 +38733,7 @@ Transform:
   m_GameObject: {fileID: 1876454302}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 0.538, z: -3.84}
+  m_LocalPosition: {x: 0.6, y: 0.538, z: -7.548}
   m_LocalScale: {x: 0.96999997, y: 0.96999997, z: 0.96999997}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -38867,19 +38871,6 @@ MonoBehaviour:
   movingSpeed: 7
   runningSpeed: 1.2
   rotationSpeed: 7
---- !u!114 &1876454312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876454302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64763e66484abb641935fc635285c919, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  imageToToggle: {fileID: 779016262}
 --- !u!114 &1876454313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38910,6 +38901,21 @@ MonoBehaviour:
   armeTransform: {fileID: 1632651993}
   projectilePrefab: {fileID: 677012566}
   cadence: 0.1
+--- !u!114 &1876454315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876454302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64763e66484abb641935fc635285c919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageToToggle:
+  - {fileID: 779016260}
+  - {fileID: 1530221893}
 --- !u!1001 &1881634324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39025,7 +39031,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884130995}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.116249554, y: 0.011010954, z: 0.0012888364, w: 0.99315816}
+  m_LocalRotation: {x: -0.11624954, y: 0.011010953, z: 0.0012888361, w: 0.99315816}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47482,7 +47488,7 @@ GameObject:
   - component: {fileID: 5818883708332180121}
   - component: {fileID: 5818883708339645503}
   - component: {fileID: 5818883708339645504}
-  - component: {fileID: 5818883708339645505}
+  - component: {fileID: 5818883708339645506}
   m_Layer: 0
   m_Name: unitychan
   m_TagString: NPC
@@ -50395,8 +50401,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 5818883708339645503}
---- !u!136 &5818883708339645505
-CapsuleCollider:
+--- !u!135 &5818883708339645506
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -50410,14 +50416,12 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 1
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.73
-  m_Height: 2.07
-  m_Direction: 1
-  m_Center: {x: 0.01, y: 0.73, z: 0}
+  serializedVersion: 3
+  m_Radius: 3.41
+  m_Center: {x: -0.1, y: 0.7499996, z: 0.15}
 --- !u!4 &5867991090091313445
 Transform:
   m_ObjectHideFlags: 0

@@ -63,7 +63,6 @@ public class ProceduralAnimation : MonoBehaviour
             legMoving[i] = false;
         }
         lastBodyPos = transform.position;
-        if (!TryGetComponent(out input)) { Debug.Log("Where clickmovement ?"); }
         
     }
 

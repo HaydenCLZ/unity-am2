@@ -3,51 +3,42 @@ using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
-    public Image imageToToggle; // Reference to the UI image
-    private bool isNPCInRange = false; // Flag to track if NPC is in range
+    public GameObject[] imageToToggle; // Reference to the UI image
 
-    void Update()
-    {
-        if (isNPCInRange)
-        {
-            Show();
-        }
-        else
-        {
-            Hide();
-        }
-    }
-
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.CompareTag("NPC"))
-        {
-            isNPCInRange = true; // Set flag to true when NPC is hit
-        }
-    }
-
-    void OnTriggerExit(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("NPC"))
         {
-            isNPCInRange = false; // Set flag to false when exiting NPC's collider
-            Debug.Log("Player exited NPC range");
+            Show();
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("NPC"))
+        { 
+            Hide();
         }
     }
 
     private void Show()
     {
-        if (imageToToggle != null)
+        foreach (GameObject g in imageToToggle)
         {
-            imageToToggle.gameObject.SetActive(true); // Show the UI image
+            if (g != null)
+            {
+                g.SetActive(true); // Show the UI image
+            }
         }
     }
 
     private void Hide()
     {
-        if (imageToToggle != null)
+        foreach (GameObject g in imageToToggle)
         {
-            imageToToggle.gameObject.SetActive(false); // Hide the UI image
+            if (g != null)
+            {
+                g.SetActive(false); // Hide the UI image
+            }
         }
     }
 }

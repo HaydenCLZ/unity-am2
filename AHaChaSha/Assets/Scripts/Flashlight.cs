@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
-    [SerializeField] public Light light;
+    [SerializeField] public new Light light;
 
     void Start()
     {

@@ -32,7 +32,8 @@ public class Tirer : MonoBehaviour
         rayshot = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(rayshot, out RaycastHit hit))
         {
-            balle.transform.up = hit.point - balle.transform.position;
+            if (!hit.transform.gameObject.CompareTag("NPC"))
+                balle.transform.up = hit.point - balle.transform.position;
         }
         else
         {
