@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43733823, g: 0.48511875, b: 0.56539214, a: 1}
+  m_IndirectSpecularColor: {r: 0.43733802, g: 0.48511845, b: 0.5653913, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13789,7 +13789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510961997}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.16294172, y: 0.010937934, z: 0.0018065007, w: 0.98657346}
+  m_LocalRotation: {x: -0.16294172, y: 0.010937967, z: 0.0018065065, w: 0.98657346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16199,7 +16199,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -4}
   m_SizeDelta: {x: 88.7, y: 73.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &649034393
@@ -23937,14 +23937,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1876454303}
     m_Modifications:
-    - target: {fileID: 5866666021909216657, guid: de13a7420582ded45a8d7d3f96889aca, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5866666021909216657, guid: de13a7420582ded45a8d7d3f96889aca, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: e8c30cc8c690b0749a8b6ad560ea4079, type: 2}
     - target: {fileID: -9094600144070608334, guid: 7de8a59d4621df44793d99fa1200f2b1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -25561,6 +25553,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.11847555
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: de13a7420582ded45a8d7d3f96889aca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: de13a7420582ded45a8d7d3f96889aca, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e8c30cc8c690b0749a8b6ad560ea4079, type: 2}
     m_RemovedComponents:
     - {fileID: 5866666021909216657, guid: de13a7420582ded45a8d7d3f96889aca, type: 3}
     m_RemovedGameObjects: []
