@@ -105,6 +105,7 @@ public class ProceduralAnimation : MonoBehaviour
         if (controllerInput < 0)
             sign = -1;
        
+        
         if (CastExtension.ArcCast(raycaster.position, transform.rotation, 270*sign, 1.90f, 8, sign, out RaycastHit hit))
         {
             Vector3 up = Vector3.Lerp(transform.up, hit.normal, 1f / (float)(smoothness + 1));
