@@ -12,11 +12,11 @@ Ce personnage peut également tirer, intéragir avec un Personnage-non-joueur et
 * DJAMAKORZIAN Sasha 12101813
 * Hairon Charlotte 12000909
 
-##Installation : 
+## Installation : 
 
 Le projet étant sous Unity il suffit de l'ouvrir directement dans l'application.
 
-##Organisation des fichiers :
+## Organisation des fichiers :
 
 Tous les fichiers que nous avons utilisés se trouvent dans **Assets** 
 Les scripts régissants le fonctionnement du jeu sont dans **scripts**
