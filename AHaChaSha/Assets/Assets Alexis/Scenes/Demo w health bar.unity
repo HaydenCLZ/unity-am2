@@ -32323,7 +32323,6 @@ GameObject:
   - component: {fileID: 1505793766}
   - component: {fileID: 1505793765}
   - component: {fileID: 1505793764}
-  - component: {fileID: 1505793767}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -32406,7 +32405,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 0
-      - m_Target: {fileID: 1505793767}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
         m_MethodName: TriggerDialogue
         m_Mode: 1
@@ -32456,24 +32455,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505793761}
   m_CullTransparentMesh: 1
---- !u!114 &1505793767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505793761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2683cde8d8d0514a9fc1e73e8679ac6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    name: Unity-chan
-    sentences:
-    - Hey
-    - 'Help me kill all those spiders invading the forest uwu please '
-  buttonToToggle: {fileID: 0}
 --- !u!1001 &1510511784
 PrefabInstance:
   m_ObjectHideFlags: 0
