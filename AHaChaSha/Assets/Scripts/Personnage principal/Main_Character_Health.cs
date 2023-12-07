@@ -19,7 +19,7 @@ public class Main_Character_Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             TakeDamage(20);
         }

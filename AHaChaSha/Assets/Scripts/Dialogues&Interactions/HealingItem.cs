@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class HealingItem : MonoBehaviour
 {
-    // Start is called before the first frame update
     public int bonusHealth = 20;
     private Main_Character_Health player;
 
@@ -23,10 +22,9 @@ public class HealingItem : MonoBehaviour
         {
             if (player.currentHealth < player.maxHealth)
             {
-                Debug.Log("Player is colliding with the item."); // debugging
+
                 Destroy(gameObject); // destroy the healing item
                 player.Heal(bonusHealth);
-                Debug.Log("Player's health increased to: " + player.currentHealth); //debugging
             }
         }
     }
